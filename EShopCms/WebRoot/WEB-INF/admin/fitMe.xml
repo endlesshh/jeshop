@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pluns>
+  <plun>
+  <item>
+   <leftName>商城管理</leftName>
+   <leftaction>showLeft.jspx</leftaction>
+   <leftFile>showLeft.jsp</leftFile>
+   </item>
+  </plun>
+
+</pluns>

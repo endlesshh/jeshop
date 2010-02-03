@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE urlrewrite PUBLIC "-//tuckey.org//DTD UrlRewrite 2.6//EN"
+        "http://tuckey.org/res/dtds/urlrewrite2.6.dtd">
+<urlrewrite>
+
+
+	<!-- 首页配置 -->
+	<rule>
+		<from>index.html$</from>
+		<to>index.jspx</to>
+	</rule>
+
+	<rule>
+		<from>Channel\_([0-9]+)\.html$</from>
+		<to>ShowChannel.jspx?channelId=$1</to>
+	</rule>
+
+	<!-- 商品跳转 
+		
+	-->
+	<rule>
+		<from>
+			ShowProduct\_([0-9]+)\.html
+		</from>
+		<to>ShowProduct.jspx?productId=$1</to>
+	</rule>
+
+	<rule>
+		<from>
+			ThreadProduct\_([0-9]+)\.html\?([_a-zA-Z]+[_0-9a-zA-Z-/]*[_0-9a-zA-Z]+\.jsp)
+		</from>
+		<to>ShowProduct.jspx?productId=$1&amp;linkurl=$2</to>
+	</rule>
+	<rule>
+		<from>
+			ThreadProduct\_([0-9]+)\.html
+		</from>
+		<to>ShowProduct.jspx?productId=$1</to>
+	</rule>
+	
+
+
+	<rule>
+		<from>
+			ShowClass\_([0-9]+)\.html\?([_a-zA-Z]+[_0-9a-zA-Z-/]*[_0-9a-zA-Z]+\.jsp)
+		</from>
+		<to>ShowClass.jspx?classId=$1&amp;linkurl=$2</to>
+	</rule>
+	<rule>
+		<from>
+			ShowClass\_([0-9]+)\.html
+		</from>
+		<to>ShowClass.jspx?classId=$1</to>
+	</rule>
+
+	<rule>
+		<from>
+			InfoClass\_([0-9]+)\.html\?([_a-zA-Z]+[_0-9a-zA-Z-/]*[_0-9a-zA-Z]+\.jsp)
+		</from>
+		<to>ShowClass.jspx?classId=$1&amp;linkurl=$2</to>
+	</rule>
+	<rule>
+		<from>
+			InfoClass\_([0-9]+)\.html
+		</from>
+		<to>ShowClass.jspx?classId=$1</to>
+	</rule>
+
+
+	<rule>
+		<from>
+			ViewPhoto\_([0-9]+)\.html\?([_a-zA-Z]+[_0-9a-zA-Z-/]*[_0-9a-zA-Z]+\.jsp)
+		</from>
+		<to>ShowPhoto.jspx?photoId=$1&amp;linkurl=$2</to>
+	</rule>
+
+	<rule>
+		<from>
+			ShowArticle\_([0-9]+)\.html
+		</from>
+		<to>ShowArticle.jspx?ArticleID=$1</to>
+	</rule>
+
+	<rule>
+		<from>
+			ViewNews\_([0-9]+)\.html
+		</from>
+		<to>ShowArticle.jspx?ArticleID=$1</to>
+	</rule>
+
+	<rule>
+		<from>
+			ThreadInfo\_([0-9]+)\.html
+		</from>
+		<to>ShowArticle.jspx?ArticleID=$1</to>
+	</rule>
+
+
+
+
+
+	<rule>
+		<from>
+			ShowPage\.html\?([_a-zA-Z]+[_0-9a-zA-Z-/]*[_0-9a-zA-Z]+\.jsp)
+		</from>
+		<to>ShowPage.jspx?tempLinkUrl=$1</to>
+	</rule>
+
+	<rule>
+		<from>
+			Info\.html\?([_a-zA-Z]+[_0-9a-zA-Z-/]*[_0-9a-zA-Z]+\.jsp)
+		</from>
+		<to>ShowPage.jspx?tempLinkUrl=$1</to>
+	</rule>
+
+
+	<rule>
+		<from>
+			ShowPage\.html\_([_a-zA-Z]+[_0-9a-zA-Z-/]*[_0-9a-zA-Z]+\.jsp)
+		</from>
+		<to>ShowPage.jspx?tempLinkUrl=$1</to>
+	</rule>
+	
+	<rule>
+		<from>
+			debug\.html\?([_a-zA-Z]+[_0-9a-zA-Z-/]*[_0-9a-zA-Z]+\.jsp)
+		</from>
+		<to>ShowPage.jspx?tempLinkUrl=$1</to>
+	</rule>
+
+	<rule>
+		<from>
+			ShowTrad.html\?([_a-zA-Z]+[_0-9a-zA-Z-/]*[_0-9a-zA-Z]+\.jsp)
+		</from>
+		<to>ShowPage.jspx?tempLinkUrl=$2</to>
+	</rule>
+
+	<rule>
+		<from>
+			ShowTrad\_([0-9]+).html\?([_a-zA-Z]+[_0-9a-zA-Z-/]*[_0-9a-zA-Z]+\.jsp)
+		</from>
+		<to>ShowPage.jspx?tradId=$1&amp;tempLinkUrl=$2</to>
+	</rule>
+
+
+
+
+	<!-- user jump -->
+
+	<rule>
+		<from>index.html\?\_([0-9]+)</from>
+		<to>index.jspx?StyleUserId=$1</to>
+	</rule>
+	<rule>
+		<from>
+			channel\_([0-9]+).html\?([_a-zA-Z]+[_0-9a-zA-Z-/]*[_0-9a-zA-Z]+\.jsp)
+		</from>
+		<to>ShowChannel.jspx?StyleUserId=$1&amp;chanlinkurl=$2</to>
+	</rule>
+
+	<rule>
+		<from>class\_([0-9]+)\_([0-9]+).html</from>
+		<to>ShowClass.jspx?StyleUserId=$1&amp;classId=$2</to>
+	</rule>
+
+
+
+	<rule>
+		<from>u([0-9]+).html</from>
+		<to>u.jspx?StyleUserId=$1</to>
+	</rule>
+
+	<rule>
+		<from>show\_([0-9]+)\_([0-9]+).html</from>
+		<to>ShowSelfPage.jspx?StyleUserId=$1&amp;SelfPageId=$2</to>
+	</rule>
+
+	<rule>
+		<from>admin_login.html</from>
+		<to>Login.jspx</to>
+	</rule>
+
+
+
+	<rule>
+		<from>login.html</from>
+		<to>index.jspx</to>
+	</rule>
+
+	<rule>
+		<from>userMain.html</from>
+		<to>userManer.jspx</to>
+	</rule>
+
+
+
+	<rule>
+		<from>ShowAskAbout.html</from>
+		<to>ShowAskMe.jspx</to>
+	</rule>
+
+	<rule>
+		<from>buyCart.html</from>
+		<to>buycar.jspx</to>
+	</rule>
+
+	<rule>
+		<from>userCenter.html</from>
+		<to>buycar.jspx</to>
+	</rule>
+
+
+	<rule>
+		<from>AskMe.html</from>
+		<to>ShowAskMe.jspx</to>
+	</rule>
+
+	<rule>
+		<from>ShopEx.html</from>
+		<to>ShopEx.jspx</to>
+	</rule>
+	<rule>
+		<from>ShopEx\_([0-9]+)\.html</from>
+		<to>ShopEx.jspx?page=$1</to>
+	</rule>
+
+
+    <rule>
+		<from>ShowSoft\_([0-9]+)\.html</from>
+		<to>ShowSoft.jspx?softId=$1</to>
+	</rule>
+	<rule>
+		<from>ThreadSoft\_([0-9]+)\.html</from>
+		<to>ShowSoft.jspx?softId=$1</to>
+	</rule>
+	<rule>
+		<from>sf\_([0-9]+)\.html</from>
+		<to>ShowSoft.jspx?softId=$1</to>
+	</rule>
+	<rule>
+		<from>ShowInMoneyToUserAcount.html</from>
+		<to>ShowPage.html?script.jsp</to>
+	</rule>
+	
+	
+
+
+
+
+</urlrewrite>
+
+
+
+
+
+
+
+
+
+
