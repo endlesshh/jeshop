@@ -1,0 +1,464 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style type="text/css">
+<!--
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+}
+body,td,th {
+	font-size: 14px;
+}
+.STYLE1 {
+	color: #FF0000;
+	font-weight: bold;
+}
+-->
+</style>
+</head>
+
+<body>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="4">
+  <tr>
+    <td>&nbsp;</td>
+    <td><img src="../images/top_03.jpg" width="736" height="66" /></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>系统环境需求及注意事项：</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td><p><strong>1、Windows 平台：</strong><br />
+      window 2000 windowXP windows2003 <br />
+    如果在windows环境中使用。</p>
+      <p>tomcat6.0以上 SDK1.5以上 SQL server数据库 （目前不提供Access数据库版本）</p>
+      <p><strong>Linux/Unix 平台</strong></p>
+      <p>tomcat6.0以上 SDK1.5以上 <br />
+      </p></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td align="left"><p><strong>基本目录结构</strong></p>
+    <p><strong>/admin/ 管理系统后台</strong> 无需修改</p>
+    <p><strong>/common/常用的系统文件</strong> 无需修改</p>
+    <p><strong>/fonfigfile 系统配置文件目录 无需修改</strong></p>
+    <p>/front/ <span class="STYLE1">模板存放位置 将做好的模板放入文件夹中 放到其他文件夹将无法获取数据</span></p>
+    <p>/jQuery/ 调用jQueryJS库文件夹 </p>
+    <p>/jsFunction/ 自定义的js函数文件</p>
+    <p>/skin/系统默认的皮肤文件地址</p>
+    <p>/user/用户管理系统目录 无需修改</p></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td align="left"><p>&nbsp;</p>
+    <p>安装使用</p>
+    <p class="STYLE1">安装Tomcat</p></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td><strong>一、开发环境配置</strong><br />
+      　　
+      <br />
+      　　
+      第一步：<a href="http://download.chinaitlab.com/" target="_blank">下载</a>j2sdk和tomcat：到sun官方站（http://java.sun.com/j2se/1.5.0/download.jsp）<a href="http://download.chinaitlab.com/" target="_blank">下载</a>j2sdk，注意<a href="http://download.chinaitlab.com/" target="_blank">下载</a>版本为<a href="http://windows.chinaitlab.com/" target="_blank">Windows</a> Offline Installation的SDK，同时最好下载J2SE 1.5.0   Documentation，然后到tomcat官方站点（http://jakarta.apache.org/site/downloads/downloads_tomcat-5.cgi）下载tomcat（下载最新5.5.9版本的tomcat）；<br />
+      　　
+      <br />
+      　　
+      第二步：安装和配置你的j2sdk和tomcat：执行j2sdk和tomcat的安装程序，然后按默认设置进行安装即可。<br />
+      　　
+      <br />
+      　　
+      1.<span class="STYLE1">安装j2sdk以后，需要配置一下环境变量，在我的电脑-&gt;属性-&gt;高级-&gt;环境变量-&gt;系统变量中添加以下环境变量(假定你的j2sdk安装在c:\j2sdk1.5.0）</span>：<br />
+      　　
+      <br />
+      　　
+      JAVA_HOME=c:\j2sdk1.5.0<br />
+      　　
+      classpath=.;%JAVA_HOME%\lib\dt.jar;%JAVA_HOME%\lib\tools.jar;（.;一定不能少，因为它代表当前路径)<br />
+      　　
+      path=%JAVA_HOME%\bin<br />
+      　　
+      <br />
+      　　
+      接着可以写一个简单的java程序来测试J2SDK是否已安装成功：<br />
+      　　
+      <br />
+      　　
+      public   class Test{<br />
+      　　
+      public static void main(String   args[]){<br />
+      　　
+      System.out.println(&quot;This is a test   program.&quot;);<br />
+      　　
+      }<br />
+      　　
+      }<br />
+      　　
+      <br />
+      　　
+      将上面的这段程序保存为文件名为Test.java的文件。<br />
+      　　
+      <br />
+      　　
+      然后打开命令提示符窗口，cd到你的Test.java所在目录，然后键入下面的命令<br />
+      　　
+      <br />
+      　　
+      javac   Test.java<br />
+      　　
+      java Test<br />
+      　　
+      <br />
+      　　
+      此时如果看到打印出来This is a test   program.的话说明安装成功了，如果没有打印出这句话，你需要仔细检查一下你的配置情况。<br />
+      　　
+      <br />
+      　　
+      2.<span class="STYLE1">安装Tomcat后，在我的电脑-&gt;属性-&gt;高级-&gt;环境变量-&gt;系统变量中添加以下环境变量(假定你的tomcat安装在c:\tomcat)：</span><br />
+      　　
+      <br />
+      　　
+      CATALINA_HOME=c:\tomcat<br />
+      　　
+      CATALINA_BASE=c:\tomcat<br />
+      　　
+      <br />
+      　　
+      然后修改环境变量中的classpath，把tomat安装目录下的common\lib下的(可以根据实际追加)servlet.jar追加到classpath中去，修改后的classpath如下：<br />
+      　　
+      <br />
+      　　
+      classpath=.;%JAVA_HOME%\lib\dt.jar;%JAVA_HOME%\lib\tools.jar;%CATALINA_HOME%\common\lib\servlet.jar;<br />
+      　　
+      <br />
+      　　
+      接着可以启动tomcat，在IE中访问http://localhost:8080，如果看到tomcat的欢迎页面的话说明安装成功了。<br />
+      　　
+      <br />
+      　　
+      <span class="STYLE1">第三步：建立自己的jsp   app目录</span><br />
+      　　
+      <br />
+      　　
+      1.到Tomcat的安装目录的webapps目录，可以看到ROOT，examples,   tomcat-docs之类Tomcat自带的的目录；<br />
+      　　
+      2.在webapps目录下新建一个目录，起名叫myapp；<br />
+      　　
+      3.myapp下新建一个目录WEB-INF，注意，目录名称是区分大小写的；<br />
+      　　
+      4.WEB-INF下新建一个文件web.xml，内容如下：<br />
+      　　
+      <br />
+      　　
+      &lt;?xml   version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot;?&gt;<br />
+      　　
+      &lt;!DOCTYPE web-app<br />
+      　　
+      PUBLIC   &quot;-//Sun Microsystems, Inc.//DTD Web Application   2.3//EN&quot;<br />
+      　　
+      &quot;http://java.sun.com/dtd/web-app_2_3.dtd&quot;&gt;<br />
+      　　
+      &lt;web-app&gt;<br />
+      　　
+      &lt;display-name&gt;My   Web Application&lt;/display-name&gt;<br />
+      　　
+      &lt;description&gt;<br />
+      　　
+      A application   for   test.<br />
+      　　
+      &lt;/description&gt;<br />
+      　　
+      &lt;/web-app&gt;<br />
+      　　
+      <br />
+      　　
+      5.在myapp下新建一个测试的jsp页面，文件名为index.jsp，文件内容如下：<br />
+      　　
+      &lt;html&gt;&lt;body&gt;&lt;center&gt;<br />
+      　　
+      Now   time is: &lt;%=new   java.util.Date()%&gt;<br />
+      　　
+      &lt;/center&gt;&lt;/body&gt;&lt;/html&gt;<br />
+      　　
+      <br />
+      　　<span class="STYLE1">      6.重启Tomcat<br />
+      　　
+      <br />
+      　　
+      7.打开浏览器，输入http://localhost:8080/myapp/index.jsp   看到当前时间的话说明就成功了。</span><br />
+      　　
+      <br />
+      　　
+      第四步：建立自己的Servlet：<br />
+      　　
+      <br />
+      　　
+      1.用你最熟悉的编辑器（建议使用有语法检查的java   ide）新建一个servlet程序，文件名为Test.java，文件内容如下：<br />
+      　　
+      <br />
+      　　
+      package test;<br />
+      　　
+      import   java.io.IOException;<br />
+      　　
+      import java.io.PrintWriter;<br />
+      　　
+      import   javax.servlet.ServletException;<br />
+      　　
+      import   javax.servlet.http.HttpServlet;<br />
+      　　
+      import   javax.servlet.http.HttpServletRequest;<br />
+      　　
+      import   javax.servlet.http.HttpServletResponse;<br />
+      　　
+      public class Test extends   HttpServlet {<br />
+      　　
+      protected void doGet(HttpServletRequest request,   HttpServletResponse response)<br />
+      　　
+      throws ServletException, IOException   {<br />
+      　　
+      PrintWriter   out=response.getWriter();<br />
+      　　
+      out.println(&quot;&lt;html&gt;&lt;body&gt;&lt;h1&gt;This   is a servlet   test.&lt;/h1&gt;&lt;/body&gt;&lt;/html&gt;&quot;);<br />
+      　　
+      out.flush();<br />
+      　　
+      }<br />
+      　　
+      }<br />
+      　　
+      <br />
+      　　<span class="STYLE1">      2   .编译<br />
+      　　
+      将Test.java放在c:\test下，使用如下命令编译：</span><br />
+      　　
+      <br />
+      　　
+      C:\Test&gt;javac   Test.java<br />
+      　　
+      <br />
+      　　
+      然后在c:\Test下会产生一个编译后的servlet文件：Test.class<br />
+      　　
+      <br />
+      　　<span class="STYLE1">      3   .将结构test\Test.class剪切到%CATALINA_HOME%\webapps\myapp\WEB-INF\classes下，也就是剪切那个test目录到classes目录下，如果classes目录不存在，就新建一个。   现在webapps\myapp\WEB-INF\classes下有test\Test.class的文件目录结构<br />
+      　　
+      <br />
+      　　
+      4   .修改webapps\myapp\WEB-INF\web.xml，添加servlet 和servlet-mapping</span><br />
+      　　
+      <br />
+      　　
+      编辑后的web.xml如下所示，红色为添加的内容:<br />
+      　　
+      <br />
+      　　
+      &lt;?xml   version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot;?&gt;<br />
+      　　
+      &lt;!DOCTYPE web-app<br />
+      　　
+      PUBLIC   &quot;-//Sun Microsystems, Inc.//DTD Web Application   2.3//EN&quot;<br />
+      　　
+      &quot;http://java.sun.com/dtd/web-app_2_3.dtd&quot;&gt;<br />
+      　　
+      &lt;web-app&gt;<br />
+      　　
+      &lt;display-name&gt;My   Web Application&lt;/display-name&gt;<br />
+      　　
+      &lt;description&gt;<br />
+      　　
+      A application   for   test.<br />
+      　　
+      &lt;/description&gt;<br />
+      　　
+      &lt;servlet&gt;<br />
+      　　
+      &lt;servlet-name&gt;Test&lt;/servlet-name&gt;<br />
+      　　
+      &lt;display-name&gt;Test&lt;/display-name&gt;<br />
+      　　
+      &lt;description&gt;A   test   Servlet&lt;/description&gt;<br />
+      　　
+      &lt;servlet-class&gt;test.Test&lt;/servlet-class&gt;<br />
+      　　
+      &lt;/servlet&gt;<br />
+      　　
+      &lt;servlet-mapping&gt;<br />
+      　　
+      &lt;servlet-name&gt;Test&lt;/servlet-name&gt;<br />
+      　　
+      &lt;url-pattern&gt;/Test&lt;/url-pattern&gt;<br />
+      　　
+      &lt;/servlet-mapping&gt;<br />
+      　　
+      &lt;/web-app&gt;<br />
+      　　
+      <br />
+      　　
+      这段话中的servlet这一段声明了你要调用的Servlet，而servlet-mapping则是将声明的servlet&quot;映射&quot;到地址/Test上<br />
+      　　
+      <br />
+      　　<span class="STYLE1">      5   .好了，重启动Tomcat，启动浏览器，输入http://localhost:8080/myapp/Test 如果看到输出This is a servlet   test.就说明编写的servlet成功了。</span><br />
+      　　
+      <br />
+      　　
+      注意：修改了web.xml以及新加了class，都要重启Tomcat<br />
+      　　
+      <br />
+      　　
+      第四步：建立自己的Bean：<br />
+      　　
+      <br />
+      　　
+      1.用你最熟悉的编辑器（建议使用有语法检查的java   ide）新建一个java程序，文件名为TestBean.java，文件内容如下：<br />
+      　　
+      <br />
+      　　
+      package test;<br />
+      　　
+      public   class TestBean{<br />
+      　　
+      private String name = null;<br />
+      　　
+      public TestBean(String   strName_p){<br />
+      　　
+      this.name=strName_p;<br />
+      　　
+      }<br />
+      　　
+      public void setName(String   strName_p){<br />
+      　　
+      this.name=strName_p;<br />
+      　　
+      }<br />
+      　　
+      public String   getName(){<br />
+      　　
+      return this.name;<br />
+      　　
+      }<br />
+      　　
+      }<br />
+      　　
+      <br />
+      　　
+      2   .编译<br />
+      　　
+      <br />
+      　　
+      将TestBean.java放在c:\test下，使用如下命令编译：<br />
+      　　
+      <br />
+      　　
+      C:\Test&gt;javac   TestBean.java<br />
+      　　
+      <br />
+      　　
+      然后在c:\Test下会产生一个编译后的bean文件：TestBean.class<br />
+      　　
+      <br />
+      　　
+      3   .将TestBean.class文件剪切到   %CATALINA_HOME%\webapps\myapp\WEB-INF\classes\test下，<br />
+      　　
+      <br />
+      　　
+      4   .新建一个TestBean.jsp文件，文件内容为：<br />
+      　　
+      <br />
+      　　
+      &lt;%@ page import=&quot;test.TestBean&quot;   %&gt;<br />
+      　　
+      &lt;html&gt;&lt;body&gt;&lt;center&gt;<br />
+      　　
+      &lt;%<br />
+      　　
+      TestBean   testBean=new TestBean(&quot;This is a test java bean.&quot;);<br />
+      　　
+      %&gt;<br />
+      　　
+      <a href="http://java.chinaitlab.com/" target="_blank">Java</a> bean name is:   &lt;%=testBean.getName()%&gt;<br />
+      　　
+      &lt;/center&gt;&lt;/body&gt;&lt;/html&gt;<br />
+      　　
+      <br />
+      　　
+      5   .好了，重启Tomcat，启动浏览器，输入http://localhost:8080/myapp/TestBean.jsp 如果看到输出<a href="http://java.chinaitlab.com/" target="_blank">Java</a> bean name is: This is a test java   bean.就说明编写的Bean成功了。<br />
+      　　
+      <br />
+      　　
+      这样就完成了整个Tomcat下的jsp、servlet和javabean的配置。接下来需要做的事情就是多看书、多读别人的好代码，自己多动手写代码以增强自己在这方面开发的能力了。<br />
+      　　
+      <br />
+      　　
+      jvm应填写到<br />
+      　　
+      c:\j2sdk\bin<br />
+      　　
+      <br />
+      　　
+      给你一个简单的配置：：：：<br />
+      　　
+      <br />
+      　　
+      <strong>JSP环境配置心得</strong><br />
+      　　
+      <br />
+      　　
+      首先要说的是，使用jdk+tomcat完全可以配置我们的jsp<a href="http://server.chinaitlab.com/" target="_blank">服务器</a>，不再需要其实任何东东，有很多文章介绍了Apache，其实根本用不着，一般的学习调试tomcat完全可以胜任了。<br />
+      　　
+      <br />
+      　　
+      安装jdk后，tomcat在安装之前会自动找到jdk的安装路径，一路点击&quot;下一步&quot;，经过一段时间的文件复制，最后&quot;close&quot;，完成comcat的安装。<br />
+      　　
+      <br />
+      　　
+      您最好去下载一个版本较高的tomcat，比如4.1以上的，因为它不需要设置太多的系统变量，右击&quot;我的电脑&quot;，选择&quot;属性&quot;-&gt;&quot;高级&quot;-&gt;&quot;环境变量&quot;-&gt;&quot;系统变量&quot;，新建一个TOMCAT_HOME，值设置成你的tomcat所在的路径，比如：D:\Program   Files\Apache Group\Tomcat   5.5，配置完成。<br />
+      　　
+      <br />
+      　　
+    从开始菜单中找到tomcat选项，一般打开顺序是：开始-&gt;程序-&gt;Apache Tomcat   5.5，选择&quot;Start Tomcat&quot;，让jsp<a href="http://server.chinaitlab.com/" target="_blank">服务器</a>开始运行，此时会打开一个类似Dos的窗口，会显示一些相关的信息</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>联系电话：13935188143</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>公司地址：山西省太原市桥东街领先网络科技</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>公司营业执照注册号：140106630039303</td>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+
+
+
+</body>
+</html>

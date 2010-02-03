@@ -1,0 +1,203 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style type="text/css">
+<!--
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+}
+body,td,th {
+	font-size: 14px;
+}
+.STYLE3 {font-size: 14px}
+-->
+</style>
+</head>
+
+<body>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="4">
+  <tr>
+    <td>&nbsp;</td>
+    <td><img src="images/top_03.jpg" width="736" height="66" /></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>首页标签：</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td><table width="100%" border="0" cellspacing="1" cellpadding="0" style="border:1px #0099FF outset; padding:10px; ">
+          <tr>
+            <td height="20" bgcolor="#3BA9FE"><span class="STYLE3">首页可以调用标签&lt;s:property escape=&quot;false&quot; value=&quot;getLinks(0,80,80,5)&quot;/&gt;</span></td>
+        </tr>
+          <tr>
+            <td><p>&lt;s:property escape=&quot;false&quot; value=&quot;getLinks(0,80,80,5)&quot;/&gt;</p>
+            <p>标签名称：获得友情链接</p>
+            <p>标签参数说明：</p>
+            <p>第一个参数：0 表示文字链接 1 表示图片链接</p>
+            <p>第二个参数：图片链接的高度 如果是文字链接 设置不起作用</p>
+            <p>第三个参数：图片链接的宽度 如果是文字链接 设置不起作用</p>
+            <p>第三个参数：每行显示多少个 例如 图片链接 每行显示多少个图片链接</p></td>
+        </tr>
+    </table></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td align="left"><table width="100%" border="0" cellspacing="1" cellpadding="0" style="border:1px #0099FF outset;padding:10px;">
+          <tr>
+            <td height="20" bgcolor="#3BA9FE"><span class="STYLE3">首页可以调用标签&lt;s:property escape=&quot;false&quot; value=&quot;ShowSeach(String linkurl)&quot;/&gt;</span></td>
+        </tr>
+          <tr>
+            <td><p><span class="STYLE3">&lt;s:property escape=&quot;false&quot; value=&quot;ShowSeach(String linkurl)&quot;/&gt;</span></p>
+            <p>标签名称：显示搜索的对话框</p>
+            <p>标签参数说明：</p>
+            <p>第一个参数：表示要显示的搜索结果的页面模板地址</p>
+            <p>注意：如果调用该标签影响显示效果的话，您可以自己用html书写该处，不影响显示效果</p>
+            <p>&nbsp;</p>            </td>
+        </tr>
+    </table></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td align="center"><table width="100%" border="0" cellspacing="1" cellpadding="0" style="border:1px #0099FF outset;padding:10px;">
+          <tr>
+            <td height="20" align="left" bgcolor="#3BA9FE"><span class="STYLE3">搜索结果显示标签：getSeachResult(int TitleNum,int isContent,int isDate,String linkurl,int pagesize)</span></td>
+        </tr>
+          <tr>
+            <td align="left"><p>&lt;s:property escape=&quot;false&quot; value=&quot;<span class="STYLE3">getSeachResult(10,10,10,'result.jsp',15)</span>&quot;/&gt;</p>
+              <p>标签名称：获得友情链接</p>
+            <p>标签参数说明：</p>
+            <p>第一个参数：表示搜索结果的题目要显示的字数</p>
+            <p>第二个参数：是否显示内容，如果为0 不显示 否则显示按照参数设置的字数</p>
+            <p>第三个参数：是否显示日期，为零，不显示，</p>
+            <p>第四个参数：详细显示该条搜索结果的信息</p>
+            <p>第五个参数：结果每页显示所少条信息</p></td>
+        </tr>
+    </table></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td align="left"><table width="100%" border="0" cellspacing="1" cellpadding="0" style="border:1px #0099FF outset;padding:10px;">
+          <tr>
+            <td height="20" align="left" bgcolor="#3BA9FE"><span class="STYLE3">搜索结果显示标签：getShowAd(int AdId,String css)</span></td>
+        </tr>
+          <tr>
+            <td align="left"><p>&lt;s:property escape=&quot;false&quot; value=&quot;<span class="STYLE3">getShowAd(1,'cssName')</span>&quot;/&gt;</p>
+              <p>标签名称：显示广告标签</p>
+              <p>标签参数说明：</p>
+              <p>第一个参数：广告的ID</p>
+              <p>第二个参数：广告的CSS名称 可以通过这里来美化广告</p>            </td>
+        </tr>
+    </table></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td align="left"><table width="100%" border="0" cellspacing="1" cellpadding="0" style="border:1px #0099FF outset;padding:10px;">
+          <tr>
+            <td height="20" align="left" bgcolor="#3BA9FE"><span class="STYLE3">首页调用视频标签：getNewsVideo(int channelId,int ClassId,int width,int height,int topNum)</span></td>
+        </tr>
+          <tr>
+            <td align="left"><p>&lt;s:property escape=&quot;false&quot; value=&quot;<span class="STYLE3">getNewsVideo(0,0,100,100,10)</span>&quot;/&gt;</p>
+              <p>标签名称：首页调用视频</p>
+              <p>标签参数说明：</p>
+              <p>第一个参数：频道的ID 要显示哪个频道的视频 </p>
+              <p>第二个参数：栏目的ID 要显示哪个栏目的ID 如果为零 显示所有栏目</p>
+              <p>第三个参数：视频的宽度</p>
+              <p>第四个参数：视频的高度</p>
+              <p>第四个参数：显示视频的数目</p></td>
+        </tr>
+    </table></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>
+    <table width="100%" border="0" cellspacing="1" cellpadding="0" style="border:1px #0099FF outset;padding:10px;">
+          <tr>
+            <td height="20" align="left" bgcolor="#3BA9FE"><span class="STYLE3">首页调用视频标签：getNewsSlidPirc(int channelId,int ClassId,int width,int height,int topNum,String linkurl)</span></td>
+        </tr>
+          <tr>
+            <td align="left"><p>&lt;s:property escape=&quot;false&quot; value=&quot;<span class="STYLE3">getNewsSlidPirc(0,0,140,140,100,'showNews.jsp')</span>&quot;/&gt;</p>
+              <p>标签名称：首页调用滚动图片效果</p>
+              <p>标签参数说明：</p>
+              <p>第一个参数：频道的ID 要显示哪个频道的视频 </p>
+              <p>第二个参数：栏目的ID 要显示哪个栏目的ID 如果为零 显示所有栏目</p>
+              <p>第三个参数：宽度</p>
+              <p>第四个参数：高度</p>
+              <p>第四个参数：显示将要显示该图片的模板地址</p></td>
+        </tr>
+    </table>   </td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td align="center"><table width="100%" border="0" cellspacing="1" cellpadding="0" style="border:1px #0099FF outset;padding:10px;">
+          <tr>
+            <td height="20" align="left" bgcolor="#3BA9FE"><span class="STYLE3">首页调用视频标签：getNewsSlidPirc(int channelId,int ClassId,int width,int height,int topNum,String linkurl)</span></td>
+        </tr>
+          <tr>
+            <td align="left"><p>&lt;s:property escape=&quot;false&quot; value=&quot;<span class="STYLE3">getNewsSlidPirc(0,0,140,140,100,'showNews.jsp')</span>&quot;/&gt;</p>
+              <p>标签名称：首页调用滚动图片效果</p>
+              <p>标签参数说明：</p>
+              <p>第一个参数：频道的ID 要显示哪个频道的视频 </p>
+              <p>第二个参数：栏目的ID 要显示哪个栏目的ID 如果为零 显示所有栏目</p>
+              <p>第三个参数：宽度</p>
+              <p>第四个参数：高度</p>
+              <p>第四个参数：显示将要显示该图片的模板地址</p></td>
+        </tr>
+    </table></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>联系电话：13935188143</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>公司地址：山西省太原市桥东街领先网络科技</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>公司营业执照注册号：140106630039303</td>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+
+
+
+</body>
+</html>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<channel>
+<Name>default</Name>
+<Root>front</Root>
+<Script>默认模板</Script>
+<mlList>
+
+<!--
+简易配置教程
+模板制作好以后  直接放入下面标签中即可 系统自动调用
+
+例如： 做个软件频道模板 softpindao.jsp
+
+做好以后 ：
+ <ml_soft> </ml_soft>
+ 
+ 中插入 
+<ShowSoftChanel>softpindao.jsp</ShowSoftChanel>
+
+模板调用完成
+
+
+
+-->
+
+
+<!-- 首页模板列表 -->
+   <ShowIndex>
+   <item>index.jsp</item>
+   </ShowIndex>
+
+   <!-- 商品频道模板列表 -->
+   
+   <ml_shop>
+   <ShowShopChanel>ShowShopChannel.jsp</ShowShopChanel>
+    <ShowShopChanel>ShowShopChannel.jsp</ShowShopChanel>
+	 <ShowShopChanel>ShowShopChannel.jsp</ShowShopChanel>
+	  <ShowShopChanel>ShowShopChannel.jsp</ShowShopChanel>
+
+   <!--商城栏目模板-->
+   <ShowShopClass>
+   ShowClass.jsp
+   </ShowShopClass>
+     <!--商城栏目模板-->
+	   <!--商城显示模板-->
+   
+   <ShowShopProduct>
+   showProduct.jsp
+   </ShowShopProduct>
+     <!--商城显示模板-->
+   </ml_shop>
+   
+   
+   <ml_News>
+   <!--文章频道模板-->
+   <ShowNewsChannel>
+   ShowNewsChannel.jsp
+   </ShowNewsChannel>
+    <!--文章频道模板-->
+	 <!--文章栏目模板-->
+   <ShowNewsClass>
+   ShowNewsClass.jsp
+   </ShowNewsClass>
+    <!--文章栏目模板-->
+    <ShowNewsClass>
+   ShowNewsClass.jsp
+   </ShowNewsClass>
+   <!--文章栏目标签-->
+   <!--文章内容模板-->
+   <ShowNewsContent>
+   ShowNews.jsp
+   </ShowNewsContent>
+   <!--文章内容模板-->
+   </ml_News>
+   
+   <ml_soft>
+    <!--软件频道模板-->
+   <ShowSoftChanel>ShowSoftChanel.jsp</ShowSoftChanel>
+    <!--软件频道模板-->
+	<!--软件栏目模板-->
+   <ShowSoftClass>ShowSoftClass.jsp</ShowSoftClass>
+   <!--软件栏目模板-->
+   <!--软件显示模板-->
+   <ShowSoft>ShowSoft.jsp</ShowSoft>
+   <ShowSoft>ShowSoft.jsp</ShowSoft>
+   <!--软件显示模板-->
+   </ml_soft>
+
+</mlList>
+
+
+
+</channel>

@@ -1,0 +1,181 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style type="text/css">
+<!--
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+}
+body,td,th {
+	font-size: 14px;
+}
+.STYLE3 {font-size: 14px}
+-->
+</style>
+</head>
+
+<body>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="4">
+  <tr>
+    <td>&nbsp;</td>
+    <td><img src="images/top_03.jpg" width="736" height="66" /></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>新闻显示标签：</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td><table width="100%" border="0" cellspacing="1" cellpadding="0" style="border:1px #0099FF outset; padding:10px; ">
+          <tr>
+            <td height="20" bgcolor="#3BA9FE"><span class="STYLE3">新闻作者：&lt;s:property value=&quot;NewsBean.getAuthor()&quot;/&gt;</span></td>
+        </tr>
+          <tr>
+            <td><p>&lt;s:property value=&quot;NewsBean.getAuthor()&quot;/&gt;</p>
+            <p>标签名称：<span class="STYLE3">新闻作者</span></p>
+            <p>&nbsp;</p></td>
+        </tr>
+    </table></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td align="left"><table width="100%" border="0" cellspacing="1" cellpadding="0" style="border:1px #0099FF outset;padding:10px;">
+          <tr>
+            <td height="20" bgcolor="#3BA9FE"><span class="STYLE3">新闻发表时间：&lt;s:date name=&quot;NewsBean.getUpdateTime()&quot; format=&quot;yyyy年MM月dd日&quot; /&gt;</span></td>
+        </tr>
+          <tr>
+            <td><p><span class="STYLE3">&lt;s:date name=&quot;NewsBean.getUpdateTime()&quot; format=&quot;yyyy年MM月dd日&quot; /&gt;</span></p>
+            <p>标签名称：<span class="STYLE3">新闻发表时间</span></p>
+            <p>&nbsp;</p>            </td>
+        </tr>
+    </table></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td align="center"><table width="100%" border="0" cellspacing="1" cellpadding="0" style="border:1px #0099FF outset;padding:10px;">
+          <tr>
+            <td height="20" align="left" bgcolor="#3BA9FE"><span class="STYLE3">新闻点击率：&lt;s:property value=&quot;NewsBean.getHits()&quot;/&gt;</span></td>
+        </tr>
+          <tr>
+            <td align="left"><p>&lt;s:property value=&quot;NewsBean.getHits()&quot;/&gt;</p>
+              <p>标签名称：<span class="STYLE3">新闻点击率</span></p>
+            <p>&nbsp;</p></td>
+        </tr>
+    </table></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td align="left"><table width="100%" border="0" cellspacing="1" cellpadding="0" style="border:1px #0099FF outset;padding:10px;">
+          <tr>
+            <td height="20" align="left" bgcolor="#3BA9FE"><span class="STYLE3">新闻内容：&lt;s:property escape=&quot;false&quot; value=&quot;NewsBean.getContent()&quot;/&gt;</span></td>
+        </tr>
+          <tr>
+            <td align="left"><p>&lt;s:property escape=&quot;false&quot; value=&quot;NewsBean.getContent()&quot;/&gt;</p>
+              <p>标签名称：<span class="STYLE3">新闻内容</span></p>
+              <p>&nbsp;</p>            </td>
+        </tr>
+    </table></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td align="left"><table width="100%" border="0" cellspacing="1" cellpadding="0" style="border:1px #0099FF outset;padding:10px;">
+          <tr>
+            <td height="20" align="left" bgcolor="#3BA9FE"><span class="STYLE3">新闻标题：&lt;s:property value=&quot;NewsBean.getTitle()&quot;/&gt;</span></td>
+        </tr>
+          <tr>
+            <td align="left"><p>&lt;s:property value=&quot;NewsBean.getTitle()&quot;/&gt;</p>
+              <p>标签名称：<span class="STYLE3">新闻标题</span></p>
+            <p>&nbsp;</p></td>
+        </tr>
+    </table></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>
+    <table width="100%" border="0" cellspacing="1" cellpadding="0" style="border:1px #0099FF outset;padding:10px;">
+          <tr>
+            <td height="20" align="left" bgcolor="#3BA9FE">新闻副标题：&lt;s:property value=&quot;NewsBean.getSubheading()&quot;/&gt;</td>
+        </tr>
+          <tr>
+            <td align="left"><p>&lt;s:property value=&quot;NewsBean.getSubheading()&quot;/&gt;</p>
+              <p>标签名称：新闻副标题</p>
+            <p>&nbsp;</p></td>
+        </tr>
+    </table>   </td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td align="center"><table width="100%" border="0" cellspacing="1" cellpadding="0" style="border:1px #0099FF outset;padding:10px;">
+          <tr>
+            <td height="20" align="left" bgcolor="#3BA9FE"><span class="STYLE3">新闻来源：&lt;s:property value=&quot;NewsBean.getCopyFrom()&quot;/&gt;</span></td>
+        </tr>
+          <tr>
+            <td align="left"><p>&lt;s:property value=&quot;NewsBean.getCopyFrom()&quot;/&gt;</p>
+              <p>标签名称：<span class="STYLE3">新闻来源</span></p>
+              <p>&nbsp;</p>            </td>
+        </tr>
+    </table></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td align="left" bgcolor="#3BA9FE">新闻录入者：&lt;s:property value=&quot;NewsBean.getInputer()&quot;/&gt;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td align="left"><p>&lt;s:property value=&quot;NewsBean.getInputer()&quot;/&gt;</p>
+        <p>标签名称：新闻副标题</p>
+      <p>&nbsp;</p></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>联系电话：13935188143</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>公司地址：山西省太原市桥东街领先网络科技</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>公司营业执照注册号：140106630039303</td>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+
+
+
+</body>
+</html>
