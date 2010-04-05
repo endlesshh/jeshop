@@ -1,0 +1,63 @@
+@charset "utf-8";
+/* CSS Document */
+
+body,td,th {
+	font-size: 12px;
+}
+.bigbord{ border:1px #009933 outset;}
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+}
+a {
+	font-size: 12px;
+	color: #333333;
+}
+a:visited {
+	color: #333333;
+}
+a:hover {
+	color: #333333;
+}
+a:active {
+	color: #333333;
+}
+.tdContent
+{
+padding:5px;}
+
+
+/*ͷĸťı*/
+.top_button{
+background-image:url(../images/button_top.jpg);
+height:46px;
+width:108px;
+text-align:center;
+vertical-align:middle;
+color:#FFFFFF;}
+
+/*ͷλ*/
+.top_channel
+{
+background-image:url(../images/channel_03.jpg);
+height:52px;
+text-align:center;
+vertical-align:middle;
+color:#FFFFFF;
+}
+.index_midle_table_bg
+{
+height:25px;
+background-image:url(../images/channaelBg.jpg);
+color:#FFFFFF;}
+.productPic
+{
+border:1px #CCCCCC outset;
+padding:3px;}
+
+
+
+
+

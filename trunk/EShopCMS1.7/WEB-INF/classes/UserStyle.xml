@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+
+	<package name="ujump" namespace="/u" extends="struts-default">
+
+		<action name="u" class="userStyle" method="jumpToUrl">
+			<result type="redirect">
+				/userStyle/index.html?_${StyleUserId}
+			</result>
+		</action>
+	</package>
+
+	<package name="userStyle" namespace="/userStyle"
+		extends="struts-default">
+		<action name="index" class="userStyle" method="initUserStart">
+			<result>
+				/WEB-INF/userStyle/${StyleName}/index.jsp?StyleUserId=${StyleUserId}
+			</result>
+			<result name="error">
+				/WEB-INF/userStyle/${StyleName}/error.jsp?StyleUserId=${StyleUserId}
+			</result>
+		</action>
+
+
+
+		<action name="ShowPage" class="userStyle"
+			method="initUserStart">
+			<result>/WEB-INF/userStyle/${StyleName}/${userpage}</result>
+			<result name="error">
+				/WEB-INF/userStyle/${StyleName}/error.jsp?StyleUserId=${StyleUserId}
+			</result>
+		</action>
+		<!-- 显示用户分类商品 -->
+		<action name="ShowClass" class="userStyle" method="ShowClass">
+			<result>
+				/WEB-INF/userStyle/${StyleName}/ShowClass.jsp?StyleUserId=${StyleUserId}&amp;ClassId=${ClassId}
+			</result>
+			<result name="error">
+				/WEB-INF/userStyle/${StyleName}/error.jsp?StyleUserId=${StyleUserId}&amp;ClassId=${ClassId}
+			</result>
+		</action>
+		<!-- 显示热卖商品 -->
+		<action name="ShowChannel" class="userStyle"
+			method="initUserStart">
+			<result>
+				/WEB-INF/userStyle/${StyleName}/${chanlinkurl}?StyleUserId=${StyleUserId}&amp;chanlinkurl=${chanlinkurl}
+			</result>
+			<result name="error">
+				/WEB-INF/userStyle/${StyleName}/error.jsp?StyleUserId=${StyleUserId}
+			</result>
+		</action>
+
+		<!-- 显示某个具体的商品 -->
+		<action name="ShowProduct" class="userStyle"
+			method="initUserStart">
+			<result>
+				/WEB-INF/userStyle/${StyleName}/ShowProduct.jsp?StyleUserId=${StyleUserId}
+			</result>
+			<result name="error">
+				/WEB-INF/userStyle/${StyleName}/error.jsp?StyleUserId=${StyleUserId}
+			</result>
+		</action>
+
+
+		<!-- 显示某个具体的新闻 -->
+		<action name="ViewNews" class="userStyle"
+			method="initUserStart">
+			<result>
+				/WEB-INF/userStyle/${StyleName}/ShowNews.jsp?StyleUserId=${StyleUserId}
+			</result>
+			<result name="error">
+				/WEB-INF/userStyle/${StyleName}/error.jsp?StyleUserId=${StyleUserId}
+			</result>
+		</action>
+
+		<!-- 提交订单-->
+		<action name="setUserOrder" class="userStyle"
+			method="addOrder">
+			<result>
+				/WEB-INF/userStyle/${StyleName}/ShowOrder.jsp?StyleUserId=${StyleUserId}
+			</result>
+			<result name="error">
+				/WEB-INF/userStyle/${StyleName}/error.jsp?StyleUserId=${StyleUserId}
+			</result>
+		</action>
+
+		<action name="updateUserBook" class="userStyle"
+			method="addBook">
+			<result type="redirect">
+				ShowProduct.jspx?StyleUserId=${StyleUserId}&amp;userProId=${bb}
+			</result>
+			<result name="error">
+				/WEB-INF/userStyle/${StyleName}/error.jsp?StyleUserId=${StyleUserId}
+			</result>
+		</action>
+
+		<!-- 商品品论显示setUserBook.lxsoft -->
+
+		<action name="setUserBook" class="userStyle" method="addBook">
+			<result>
+				/WEB-INF/userStyle/${StyleName}/ShowProduct.jsp?StyleUserId=${StyleUserId}
+			</result>
+			<result name="error">
+				/WEB-INF/userStyle/${StyleName}/error.jsp?StyleUserId=${StyleUserId}
+			</result>
+		</action>
+
+		<!-- 商品搜索 -->
+
+		<action name="SerchPro" class="userStyle"
+			method="initUserStart">
+			<result>
+				/WEB-INF/userStyle/${StyleName}/ReSult.jsp?StyleUserId=${StyleUserId}
+			</result>
+			<result name="error">
+				/WEB-INF/userStyle/${StyleName}/error.jsp?StyleUserId=${StyleUserId}
+			</result>
+		</action>
+
+		<!-- 商品自定义频道 -->
+		<action name="ShowSelfPage" class="userStyle"
+			method="initUserStart">
+			<result>
+				/WEB-INF/userStyle/${StyleName}/ShowMyPage.jsp?StyleUserId=${StyleUserId}
+			</result>
+			<result name="error">
+				/WEB-INF/userStyle/${StyleName}/error.jsp?StyleUserId=${StyleUserId}
+			</result>
+		</action>
+
+
+		<!-- 获得验证码-->
+		<action name="getSafeCode" class="UserLogin" method="getPNG">
+		</action>
+		<action name="indexFree" class="userStyle"
+			method="initUserStart">
+			<result type="freemarker">/WEB-INF/flt/png.ftl</result>
+		</action>
+	</package>
+
+</struts>

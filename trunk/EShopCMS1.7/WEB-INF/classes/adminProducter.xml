@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="adminProducter" namespace="/admin"
+		extends="struts-default">
+		<!-- 厂商店家管理  厂商和店家有权利添加商品 -->
+		<action name="initAddProducter" class="adminProducter"
+			method="initAddProducter">
+			<result>
+				/admin/addProducter.jsp?channelId=${channelId}
+			</result>
+		</action>
+		<action name="AddProducter" class="adminProducter"
+			method="addProducter">
+			<result type="redirect">
+				/admin/listProducter.jspx?channelId=${channelId}
+			</result>
+		</action>
+
+		<action name="listProducter" class="adminProducter"
+			method="listProductor">
+			<result>
+				/admin/ListProducter.jsp?channelId=${channelId}
+			</result>
+		</action>
+
+		<!-- 删除功能 -->
+		<action name="deleProducter" class="adminProducter"
+			method="deleteProducter">
+			<result type="redirect">
+				/admin/listProducter.jspx?channelId=${channelId}
+			</result>
+		</action>
+
+		<!-- 修改功能 -->
+		<action name="modProducter" class="adminProducter"
+			method="modProducter">
+			<result name="input">
+				/admin/modProducter.jsp?channelId=${channelId}
+			</result>
+			<result>
+				/admin/modProducter.jsp?channelId=${channelId}
+			</result>
+		</action>
+		<action name="updateProducter" class="adminProducter"
+			method="updateProducter">
+			<result type="redirect">
+				/admin/listProducter.jspx?channelId=${channelId}
+			</result>
+		</action>
+
+		<action name="setProducter" class="adminProducter"
+			method="setProducter">
+			<result type="redirect">/admin/listProducter.jspx</result>
+		</action>
+
+
+
+	</package>
+
+</struts>

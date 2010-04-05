@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="Comment" namespace="/front"
+		extends="struts-default">
+
+		<!-- 评论管理 -->
+
+		<!-- 添加评论（需要channelType）-->
+		<action name="addComment" class="Comment" method="addComment">
+			<result>
+				/WEB-INF/common/addComment.jsp
+			</result>
+			<result name="input">
+				/WEB-INF/common/addComment.jsp
+			</result>
+
+			<result name="error">
+				/WEB-INF/common/addComment.jsp
+			</result>
+
+		</action>
+		<action name="showComment">
+			<result>
+				/WEB-INF/common/addComment.jsp?channelId=${channelId}
+			</result>
+		</action>
+		<action name="getSafeCode" class="UserLogin" method="getPNG">
+		</action>
+
+
+	</package>
+
+</struts>

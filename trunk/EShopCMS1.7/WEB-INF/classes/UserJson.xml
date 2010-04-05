@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+
+	<!-- JsonBean.xml -->
+	<package name="userjson" namespace="/userStyle"
+		extends="json-default">
+
+		<!-- json插件  返回指定的商品信息 -->
+		<action name="ShowProduct_Json" class="JsonProduct"
+			method="jsonProductUser">
+			<result type="json">
+				<param name="excludeProperties">proID</param>
+			</result>
+		</action>
+		<!-- 返回指定用户的商品列表 需要分页 -->
+		<action name="Index_Json" class="JsonIndex" method="Index">
+			<result type="json"></result>
+		</action>
+		<!-- 返回热卖商品 -->
+		<action name="Product_hot_Json" class="JsonAllProduct"
+			method="JsonHotProduct">
+			<result type="json">
+				<param name="excludeProperties">listIsetProduct</param>
+			</result>
+		</action>
+		<!-- 返回推荐商品 -->
+		<action name="Product_isSet_Json" class="JsonAllProduct"
+			method="JsonisSetProduct">
+			<result type="json">
+				<param name="excludeProperties">listHotProduct</param>
+			</result>
+		</action>
+		<!-- 返回指定的新闻 -->
+		<action name="ViewNews_Json" class="JsonNews"
+			method="JsonNews">
+			<result type="json"></result>
+		</action>
+
+		<action name="ThreadNews_Json" class="ThreadNews"
+			method="ThreadNewsShow">
+			<result type="json"></result>
+		</action>
+
+	</package>
+
+</struts>
