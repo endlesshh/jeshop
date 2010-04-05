@@ -1,0 +1,2102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+
+	<package name="getSofecode" namespace="/admin"
+		extends="struts-default">
+		<action name="getSafeCode" class="UserLogin" method="getPNG">
+
+		</action>
+		<!--this is the user and getUserLogin and show something  -->
+		<!--  首页用户登陆的情况 -->
+		<action name="Login" method="adminIndex" class="UserLogin">
+			<result>/WEB-INF/admin/index.jsp</result>
+		</action>
+
+		<action name="adminOut" method="userOut" class="UserLogin">
+			<result>/WEB-INF/admin/index.jsp</result>
+		</action>
+
+		<action name="index" method="adminIndex" class="UserLogin">
+			<result>/WEB-INF/admin/index.jsp</result>
+		</action>
+
+		<action name="Index" method="adminIndex" class="UserLogin">
+			<result>/WEB-INF/admin/index.jsp</result>
+		</action>
+		<!-- 检查用户登陆的情况 -->
+
+
+
+		<action name="UserLogin" class="UserLogin" method="userLogin">
+			<result name="input">/WEB-INF/admin/index.jsp</result>
+			<result name="error">/WEB-INF/admin/error.jsp</result>
+			<result>/WEB-INF/admin/manage.jsp</result>
+		</action>
+		<action name="UserLoginCheck">
+			<result>/WEB-INF/admin/index.jsp</result>
+		</action>
+
+	</package>
+
+
+	<package name="ToUserLogin" namespace="/admin"
+		extends="struts-default">
+		<global-results>
+			<result name="ToUserLogin" type="redirect">
+				/admin/UserLogin.jspx
+			</result>
+		</global-results>
+	</package>
+
+	<package name="interceptor" extends="struts-default"
+		namespace="/admin">
+
+<!-- 		<interceptors>
+			<interceptor name="myInterceptor"
+				class="com.lxsoft.tools.CheckUserlogin" />
+			<interceptor-stack name="myStack">
+				<interceptor-ref name="myInterceptor" />
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+		</interceptors>
+
+		<default-interceptor-ref name="myStack" />
+
+		<global-results>
+			<result name="userchecklogin" type="redirect">
+				/admin/index.jspx
+			</result>
+			<result name="error">
+			/WEB-INF/admin/error.jsp
+			</result>
+		</global-results>
+
+
+
+	
+
+		<global-exception-mappings>
+			<exception-mapping result="error"
+				exception="java.lang.Exception">
+			</exception-mapping>
+			<exception-mapping result="error"
+				exception="java.lang.NullPointerException">
+			</exception-mapping>
+		</global-exception-mappings>
+		
+ -->
+
+
+		<!-- 全局异常映射 -->
+
+		<!-- 统计功能 -->
+		<action name="subAll" class="adminMain" method="subaccount">
+			<result>/WEB-INF/admin/Main.jsp</result>
+		</action>
+		<action name="adminInfo" class="adminMain" method="adminInfo">
+			<result>/WEB-INF/admin/userInfo.jsp</result>
+		</action>
+
+		<action name="MainProductList" class="adminMain"
+			method="subaccount">
+			<result>/WEB-INF/admin/ListMainProduct.jsp</result>
+		</action>
+
+        <action name="adminJobList" class="coreJob" method="ListJobByUser">
+        <result>/WEB-INF/admin/JobList.jsp</result>
+        </action>
+        
+        <action name="DoJob" class="CDoJob" method="getRequestUrl">
+        <result>/WEB-INF/admin/DoJobLast.jsp</result>
+        <result name="resultArticle">/WEB-INF/admin/DoJobLastartcle.jsp</result>
+        <result name="resultSoft">/WEB-INF/admin/DoJobLastsoft.jsp</result>
+        <result name="resultPhoto">/WEB-INF/admin/DoJobLastproduct.jsp</result>
+        <result name="resultProduct">/WEB-INF/admin/DoJobLastproduct.jsp</result>
+        <result name="resultProductor">/WEB-INF/admin/DoJobLast.jsp</result>
+        <result name="resultLinkList">/WEB-INF/admin/DoJobLast.jsp</result>
+        <result name="resultUserReg">/WEB-INF/admin/DoJobLast.jsp</result>
+        <result name="resultWebOutDate">/WEB-INF/admin/DoJobLast.jsp</result>
+        </action>
+        
+        
+        <action name="doNewsPassType" class="adminNews" method="setNewsPassByadmin">
+        <result >/WEB-INF/admin/DoJobResult.jsp</result>
+        </action>
+        <action name="LookJobProcess" class="adminNews" method="initNews">
+        <result >/WEB-INF/admin/DoJobHisTory.jsp</result>
+        </action>
+
+         <action name="LookProductProcess" class="adminProduct" method="initProduct">
+        <result >/WEB-INF/admin/DoJobHisTory.jsp</result>
+        </action>
+
+
+
+         <action name="doProductPassType" class="adminProduct" method="setProductAdminPass">
+        <result >/WEB-INF/admin/DoJobResult.jsp</result>
+        </action>
+         <action name="doSoftPassType" class="adminsoft" method="setSoftAdminPass">
+        <result >/WEB-INF/admin/DoJobResult.jsp</result>
+        </action>
+         <action name="LooksoftProcess" class="adminsoft" method="InitAddSoft">
+        <result >/WEB-INF/admin/DoJobHisTory.jsp</result>
+        </action>
+         
+          
+
+
+
+        
+		<!-- 列举所有的用户 -->
+
+
+
+		<!-- 列举所有的用户 -->
+		<action name="ListAllUserByGroup" class="UserLogin"
+			method="listUser">
+			<result>/WEB-INF/admin/listUserByg.jsp</result>
+		</action>
+
+		<!-- 列举所有用户组 -->
+		<action name="ListUserGroup" class="adminUserGroup"
+			method="listGroup">
+			<result>/WEB-INF/admin/listGroup.jsp</result>
+		</action>
+
+		<!-- 添加用户组 -->
+		<action name="addUserGroup" class="adminUserGroup"
+			method="addUsergroup">
+			<result>/WEB-INF/admin/addUserGroup.jsp</result>
+		</action>
+
+		<!-- 删除用户组 -->
+		<action name="deleteUserGroup" class="adminUserGroup"
+			method="deleteUserGroup">
+			<result>/WEB-INF/admin/listGroup.jsp</result>
+		</action>
+
+		<!-- 设置用户组 -->
+		<action name="initModUserGroup" class="adminUserGroup"
+			method="initModUser">
+			<result>/WEB-INF/admin/modGroup.jsp</result>
+		</action>
+
+		<!-- 修改用户组 -->
+		<action name="modUserGroup" class="adminUserGroup"
+			method="modUserGroup">
+			<result>/WEB-INF/admin/listGroup.jsp</result>
+		</action>
+		<action name="moveUserTo" class="adminUserGroup"
+			method="moveUser">
+			<result>/WEB-INF/admin/listGroup.jsp</result>
+		</action>
+
+		<!-- 全局跳转 -->
+
+         <action name="listtempletClass" class="adminTemplet" method="list">
+         <result>/WEB-INF/admin/listtempclass.jsp</result>
+         </action>
+          <action name="listTempFile" class="adminTemplet" method="listClassTempfile">
+         <result>/WEB-INF/admin/listclassconfig.jsp</result>
+         </action>
+          <action name="addTempFile" class="adminTemplet" method="addClassTempfile">
+         <result>/WEB-INF/admin/listclassconfig.jsp</result>
+         </action>
+         <action name="deleteTempFiledettail" class="adminTemplet" method="deleteTempFiledettail">
+         <result>/WEB-INF/admin/listclassconfig.jsp</result>
+         </action>
+         <action name="listStringfiledia" class="adminTemplet" method="listStringfile">
+         <result>/WEB-INF/admin/listAllFile.jsp</result>
+         </action>
+         
+         
+         
+         
+         
+         
+		<action name="ListLeft" class="ListLeft">
+			<result>/WEB-INF/admin/left.jsp</result>
+			<result name="error">/WEB-INF/admin/index.jsp</result>
+		</action>
+		<action name="commonLeft">
+			<result>/WEB-INF/admin/left_otherAdmin.jsp</result>
+			<result name="error">/WEB-INF/admin/index.jsp</result>
+		</action>
+
+		<!--频道管理  -->
+
+		<!-- 返回频道默认的首页 返回频道的所有条目 -->
+		<action name="adminChannel" class="adminChannel"
+			method="adminChannel">
+			<result>
+				/WEB-INF/admin/ListChannel.jsp<!-- x显示频道 -->
+			</result>
+		</action>
+
+
+		<!-- 显示某个特定的频道 -->
+		<action name="findChannel" class="adminChannel"
+			method="findChanById">
+			<result>
+				/WEB-INF/admin/setChannel.jsp<!-- x显示频道 -->
+			</result>
+		</action>
+
+		<action name="modChannel" class="adminChannel"
+			method="findChanById">
+			<result>
+				/WEB-INF/admin/modChannel.jsp<!-- 修改频道 -->
+			</result>
+		</action>
+		
+		<action name="updateChannel" class="adminChannel"
+			method="setChannel">
+			<result>
+				/WEB-INF/admin/ListChannel.jsp<!-- 修改频道 -->
+			</result>
+			<result name="error">
+				/WEB-INF/admin/modChannel.jsp<!-- 修改频道 -->
+			</result>
+			
+		</action>
+
+
+		<action name="editChannel" class="adminChannel"
+			method="setChannel">
+			<result>
+				<!-- 显示列表 -->
+				/WEB-INF/admin/ListChannel.jsp
+			</result>
+			<result name="input">/WEB-INF/admin/modChannel.jsp</result>
+			<result name="error">/WEB-INF/admin/modChannel.jsp</result>
+		</action>
+
+           
+
+		<action name="setChannel" class="adminChannel"
+			method="setChannel">
+			<result>
+				<!-- 显示列表 -->
+				/WEB-INF/admin/ListChannel.jsp
+			</result>
+			<result name="input">/WEB-INF/admin/setChannel.jsp</result>
+			<result name="error">/WEB-INF/admin/setChannel.jsp</result>
+		</action>
+
+
+		<action name="addChannel" class="adminChannel"
+			method="addChannel">
+			<result>
+				<!-- 显示列表 -->
+				/WEB-INF/admin/ListChannel.jsp
+			</result>
+			<result name="input">/WEB-INF/admin/addChannel.jsp</result>
+			<result name="error">/WEB-INF/admin/addChannel.jsp</result>
+		</action>
+
+		<!-- 编辑频道 -->
+		<action name="editChannel" class="adminChannel"
+			method="editChannel">
+			<result>
+				<!-- 显示列表 -->
+				/WEB-INF/admin/ListChannel.jsp
+			</result>
+			<result name="input">/WEB-INF/admin/editChannel.jsp</result>
+			<result name="error">/WEB-INF/admin/editChannel.jsp</result>
+		</action>
+		<!-- 频道的排序过程 oderChannel
+			成功以后返回到频道列表中
+		-->
+		<action name="oderChannel" class="adminChannel"
+			method="oderChannel">
+			<result>
+				<!-- 显示列表 -->
+				/WEB-INF/admin/ListChannel.jsp
+			</result>
+		</action>
+
+		<!--删除频道  -->
+		<action name="deleChannel" class="adminChannel"
+			method="deleChannel">
+			<result>
+				<!-- 显示列表 -->
+				/WEB-INF/admin/ListChannel.jsp
+			</result>
+		</action>
+
+		<!-- 列举网站属性 -->
+		
+		<!-- 水印设置 -->
+		<action name="ListconfigWater" class="webconfig"
+			method="ListConfig">
+			<result>/WEB-INF/admin/WaterLogo/setupWater.jsp<!-- x显示配置 -->
+			</result>
+		</action>
+		
+		<!-- 更新配置信息 -->
+		<action name="updateListconfigWater" class="webconfig"
+			method="updateConfigWater">
+			<result>/WEB-INF/admin/WaterLogo/setupWater.jsp<!-- x显示配置 -->
+			</result>
+			<result name="input">/WEB-INF/admin/WaterLogo/setupWater.jsp<!-- x显示配置 -->
+			</result>
+		</action>
+		
+		
+		
+		
+		<action name="Listconfig" class="webconfig"
+			method="ListConfig">
+			<result>
+				/WEB-INF/admin/ListConfig.jsp<!-- x显示配置 -->
+			</result>
+		</action>
+		
+
+		<action name="ListconfigFujia" class="webconfig"
+			method="ListConfigFujia">
+			<result>
+				/WEB-INF/admin/webInfo.jsp<!-- x显示配置 -->
+			</result>
+		</action>
+
+		<action name="UpdateconfigFujia" class="webconfig"
+			method="updateConfigFujia">
+			<result>
+				/WEB-INF/admin/webInfo.jsp<!-- x更新配置 -->
+			</result>
+		</action>
+		<action name="Updateconfig" class="webconfig"
+			method="updateConfig">
+			<result>
+				/WEB-INF/admin/ListConfig.jsp<!-- x更新配置 -->
+			</result>
+		</action>
+
+		<!-- 返回频道默认的首页 返回公告的所有条目 -->
+		<action name="adminAnnounce" class="adminAnnounce"
+			method="ListAnnounce">
+			<result>
+				/WEB-INF/admin/ListAnnounce.jsp<!-- x显示公告 -->
+			</result>
+		</action>
+
+
+		<!-- 显示某个特定的公告 -->
+		<action name="findAnnouce" class="adminAnnounce"
+			method="findAnnouceById">
+			<result>
+				/WEB-INF/admin/setAnnounce.jsp<!-- x显示频道 -->
+			</result>
+		</action>
+
+		<action name="setAnnounce" class="adminAnnounce"
+			method="setAnnounce">
+			<result>
+				/WEB-INF/admin/ListAnnounce.jsp<!-- 修改频道 -->
+			</result>
+			<result name="input">/WEB-INF/admin/setAnnounce.jsp</result>
+		</action>
+		<!-- 设置关于公告的关闭开通 -->
+		<action name="enableAnnounce" class="adminAnnounce"
+			method="enableAnnounce">
+			<result>
+				/WEB-INF/admin/ListAnnounce.jsp
+			</result>
+			<result name="error">/WEB-INF/admin/ListAnnounce.jsp</result>
+		</action>
+		<action name="serchAn" class="adminAnnounce"
+			method="serchAn">
+			<result>
+				/WEB-INF/admin/ListseAnnounce.jsp
+			</result>
+			<result name="error">/WEB-INF/admin/ListAnnounce.jsp</result>
+		</action>
+		
+
+
+
+
+
+		<action name="addAnnounceList" class="adminAnnounce"
+			method="ListChan">
+			<result>/WEB-INF/admin/addAnnounce.jsp</result>
+		</action>
+
+		<action name="addAnnounce" class="adminAnnounce"
+			method="addAnnounce">
+			<result>
+				<!-- 显示列表 -->
+				/WEB-INF/admin/ListAnnounce.jsp
+			</result>
+			<result name="input">/WEB-INF/admin/addAnnounce.jsp</result>
+			<result name="error">
+				/WEB-INF/admin/adminAnnounce.jspx
+			</result>
+		</action>
+
+
+		<!--删除频道  -->
+		<action name="deleAnnounce" class="adminAnnounce"
+			method="deleAnnounce">
+			<result>
+				<!-- 显示列表 -->
+				/WEB-INF/admin/ListAnnounce.jsp
+			</result>
+		</action>
+
+
+		<!--关于新闻文章管理  -->
+
+		<action name="setAdminPass" class="setAdminpass"
+			method="setPass">
+			<result>/WEB-INF/admin/setAdminPass.jsp</result>
+		</action>
+
+
+		<!-- 送货方式 -->
+		<action name="SendGoodsTypeinit" class="adminSendGoods"
+		>
+			<result>/WEB-INF/admin/addSendGoods.jsp</result>
+		</action>
+		<action name="SendGoodsType" class="adminSendGoods"
+			method="addSendGoods">
+			<result>/WEB-INF/admin/ListSendGoods.jsp</result>
+		</action>
+		<action name="adminGoodsType" class="adminSendGoods"
+			method="listSendGoods">
+			<result>/WEB-INF/admin/ListSendGoods.jsp</result>
+		</action>
+		<action name="findGoodsType" class="adminSendGoods"
+			method="findbyid">
+			<result>/WEB-INF/admin/modSendGoods.jsp</result>
+		</action>
+		<action name="updateGoodsType" class="adminSendGoods"
+			method="modType">
+			<result>/WEB-INF/admin/ListSendGoods.jsp</result>
+		</action>
+		<action name="deleteGoodsType" class="adminSendGoods"
+			method="delete">
+			<result>/WEB-INF/admin/ListSendGoods.jsp</result>
+		</action>
+		<!---->
+
+
+
+		<!-- 关于新闻和文章的管理 -->
+
+
+
+		<action name="adminNews" class="adminNews" method="ListClass">
+			<result>
+				/WEB-INF/admin/addNews.jsp?channelID=${channelID}
+			</result>
+		</action>
+
+		<action name="ListNews" class="adminNews" method="ListNews">
+			<result>
+				/WEB-INF/admin/ListNews.jsp?channelID=${channelID}
+			</result>
+			<result name="error">
+				/WEB-INF/admin/error.jsp?channelID=${channelID}
+			</result>
+		</action>
+		
+		<action name="ListNewsUpass" class="adminNews" method="ListNewsUpassOne">
+			<result>
+				/WEB-INF/admin/ListNewsUpass.jsp?channelID=${channelID}
+			</result>
+			<result name="error">
+				/WEB-INF/admin/error.jsp?channelID=${channelID}
+			</result>
+		</action>
+		
+		<action name="listSelectNews" class="adminNews" method="listNewsSelect">
+			<result>
+				/WEB-INF/admin/listSelectNews.jsp?channelID=${channelID}
+			</result>
+			<result name="error">
+				/WEB-INF/admin/error.jsp?channelID=${channelID}
+			</result>
+		</action>
+		
+		
+		
+		<action name="SerchNews" class="adminNews" method="listSnews">
+			<result>
+				/WEB-INF/admin/ListNewsSerch.jsp?channelID=${channelID}
+			</result>
+			<result name="error">
+				/WEB-INF/admin/error.jsp?channelID=${channelID}
+			</result>
+		</action>
+		
+		<action name="ListNewsByClass" class="adminNews" method="ListNewsByClass">
+			<result>
+				/WEB-INF/admin/ListClassNews.jsp?channelID=${channelID}
+			</result>
+			<result name="error">
+				/WEB-INF/admin/error.jsp?channelID=${channelID}
+			</result>
+		</action>
+		
+		
+
+
+
+
+		<action name="modNews" class="adminNews" method="modNews">
+			<result>
+				/WEB-INF/admin/ListNews.jsp?channelID=${channelID}
+			</result>
+			<result name="error">
+				/WEB-INF/admin/error.jsp?channelID=${channelID}
+			</result>
+		</action>
+
+		<action name="addListNews" class="adminNews"
+			method="ListClass">
+			<result>
+				/WEB-INF/admin/addNews.jsp?channelID=${channelID}
+			</result>
+			<result name="error">/WEB-INF/admin/error.jsp</result>
+		</action>
+
+		<action name="addNews" class="adminNews" method="addNews">
+			<result name="success">
+
+				/WEB-INF/admin/ListNews.jsp?channelID=${channelID}
+			</result>
+			<result name="input">
+				/WEB-INF/admin/addNews.jsp?channelID=${channelID}
+			</result>
+			<result name="error">/WEB-INF/admin/error.jsp</result>
+		</action>
+
+
+		<action name="findNews" class="adminNews" method="findNews">
+			<result>/WEB-INF/admin/modNews.jsp</result>
+			<result name="error">
+				/WEB-INF/admin/error.jsp?channelID=${channelID}
+			</result>
+		</action>
+
+
+         <action name="ShowNewsCurey" class="adminNews" method="findNews">
+			<result>/WEB-INF/admin/ShowNewsCurey.jsp</result>
+			<result name="error">
+				/WEB-INF/admin/error.jsp?channelID=${channelID}
+			</result>
+		</action>
+		<action name="setNewsCurey" class="adminNews" method="addnewsCurvey">
+			<result>/WEB-INF/admin/ListNews.jsp?channelID=${channelID}</result>
+			<result name="error">
+				/WEB-INF/admin/error.jsp?channelID=${channelID}
+			</result>
+		</action>
+		
+		<action name="ShowNewsContact" class="adminNews" method="findNews">
+			<result>/WEB-INF/admin/ShowNewsContact.jsp</result>
+			<result name="error">
+				/WEB-INF/admin/error.jsp?channelID=${channelID}
+			</result>
+		</action>
+		<action name="setNewsContact" class="adminNews" method="addnewsContact">
+			<result>/WEB-INF/admin/ListNews.jsp?channelID=${channelID}</result>
+			<result name="error">
+				/WEB-INF/admin/error.jsp?channelID=${channelID}
+			</result>
+		</action>
+
+         
+
+		<action name="deleNews" class="adminNews" method="deleNews">
+			<result>
+				/WEB-INF/admin/ListNews.jsp?channelID=${channelID}
+			</result>
+			<result name="error">
+				/WEB-INF/admin/error.jsp?channelID=${channelID}
+			</result>
+		</action>
+		
+		<action name="setNewsPass" class="adminNews" method="setNewsPass">
+			<result>
+				/WEB-INF/admin/ListNews.jsp?channelID=${channelID}
+			</result>
+			<result name="error">
+				/WEB-INF/admin/error.jsp?channelID=${channelID}
+			</result>
+		</action>
+
+        <action name="passAllNews" class="adminNews" method="passAllNews">
+			<result>
+				/WEB-INF/admin/ListNews.jsp?channelID=${channelID}
+			</result>
+			<result name="error">
+				/WEB-INF/admin/error.jsp?channelID=${channelID}
+			</result>
+		</action>
+
+
+		<!-- 新闻条目展示扩展 -->
+
+
+		<action name="extendNews" class="adminNews"
+			method="listProductExtend">
+			<result>
+				/WEB-INF/admin/addNewsExtend.jsp?channelId=${channelId}
+			</result>
+		</action>
+		<action name="setextendNews" class="adminNews"
+			method="setProductExtend">
+			<result>
+				/WEB-INF/admin/addNewsExtend.jsp?channelId=${channelId}
+			</result>
+		</action>
+		<action name="showDetailNewsEx" class="adminNews"
+			method="showDetailEx">
+			<result>
+				/WEB-INF/admin/NewsExtendDetail.jsp?channelId=${channelId}
+			</result>
+		</action>
+		<action name="SaveDetailNewsEx" class="adminNews"
+			method="SaveDetailEx">
+			<result>
+				/WEB-INF/admin/NewsExtendDetail.jsp?channelId=${channelId}
+			</result>
+		</action>
+		<action name="deletNewsExtend" class="adminNews"
+			method="deletExtend">
+			<result>
+				/WEB-INF/admin/addNewsExtend.jsp?channelId=${channelId}
+			</result>
+		</action>
+		<!-- 扩展结束 -->
+
+
+
+
+
+
+		<action name="addUnit" class="adminUnit" method="addName">
+			<result>/WEB-INF/admin/addUnit.jsp</result>
+		</action>
+		<action name="listUnit" class="adminUnit" method="listUnit">
+			<result>/WEB-INF/admin/addUnit.jsp</result>
+		</action>
+		<action name="deleUnit" class="adminUnit" method="deleUnit">
+			<result>/WEB-INF/admin/addUnit.jsp</result>
+		</action>
+
+		<!-- 开户行管理 -->
+
+		<action name="addBank" class="adminBankCard" method="addBank">
+			<result>/WEB-INF/admin/ListBank.jsp</result>
+		</action>
+		<action name="deleBank" class="adminBankCard"
+			method="deleteCard">
+			<result>/WEB-INF/admin/ListBank.jsp</result>
+		</action>
+		<action name="ListBank" class="adminBankCard"
+			method="listBank">
+			<result>/WEB-INF/admin/ListBank.jsp</result>
+		</action>
+		<action name="setBank" class="adminBankCard"
+			method="setBCStatus">
+			<result>/WEB-INF/admin/ListBank.jsp</result>
+		</action>
+
+
+
+
+
+		<!-- 关于栏目的管理 -->
+
+
+
+		<action name="adminClass" class="adminClass"
+			method="ListClass">
+			<result>
+				/WEB-INF/admin/ListClass.jsp?channelId=${channelId}
+			</result>
+			<result name="error">/WEB-INF/admin/ListClass.jsp</result>
+		</action>
+
+		<!-- 关于栏目的删除 -->
+		<action name="deleClass" class="adminClass"
+			method="deleClass">
+			<result>
+				/WEB-INF/admin/ListClass.jsp?channelId=${channelId}
+			</result>
+			<result name="error">/WEB-INF/admin/ListClass.jsp</result>
+		</action>
+
+
+		<action name="findClass" class="adminClass"
+			method="findClass">
+			<result>
+				/WEB-INF/admin/addClass.jsp?channelId=${channelId}
+			</result>
+		</action>
+
+
+		<!-- 添加功能 -->
+		<action name="addClass" class="adminClass" method="addClass">
+
+			<result>
+				/WEB-INF/admin/ListClass.jsp?channelId=${channelId}
+			</result>
+
+			<result name="input" type="redirect">
+				/WEB-INF/admin/findClass.jspx?channelId=${channelId}
+			</result>
+			<result name="error" type="redirect">
+				/WEB-INF/admin/error.jsp?channelId=${channelId}
+			</result>
+		</action>
+
+		<!--关于修改栏目 -->
+
+
+		<action name="modInitClass" class="adminClass"
+			method="modInitClass">
+			<result>
+				/WEB-INF/admin/modClass.jsp?channelId=${channelId}
+			</result>
+		</action>
+
+
+		<action name="modifyClass" class="adminClass"
+			method="modifyClass">
+
+			<result>
+				/WEB-INF/admin/ListClass.jsp?channelId=${channelId}
+			</result>
+
+			<result name="input">
+				/WEB-INF/admin/modClass.jsp?channelId=${channelId}
+			</result>
+		</action>
+
+
+
+
+		<action name="upfile" class="upfile">
+			<result>
+				/WEB-INF/admin/upfile.jsp?classId=${classId}
+			</result>
+		</action>
+		<action name="upfilesingle" class="upfilesingle">
+			<result>
+				/WEB-INF/admin/upfilesingle.jsp?classId=${classId}
+			</result>
+		</action>
+		<action name="upfilevideo" class="upfilesingle">
+			<result>
+				/WEB-INF/admin/upfilevideo.jsp?classId=${classId}
+			</result>
+		</action>
+
+		<action name="uplocalPic" class="upfilesingle"
+			method="upTofile">
+			<result>
+				/WEB-INF/admin/${linkurl}?classId=${classId}
+			</result>
+		</action>
+
+		<action name="upTofile" class="upfilesingle"
+			method="executeSlipleFile">
+			<result>
+				/WEB-INF/admin/${linkurl}?classId=${classId}
+			</result>
+		</action>
+		<action name="uptofile" class="upfilesingle"
+			method="executeSlipleFile">
+			<result>
+				/WEB-INF/admin/${linkurl}?classId=${classId}
+			</result>
+		</action>
+		<!-- 显示图片列表页面 也就是总体的管理页面 -->
+
+
+		<action name="photoIndex" class="adminPhoto"
+			method="photoIndex">
+			<result>
+				/WEB-INF/admin/addPhoto.jsp?channelId=${channelId}
+			</result>
+			<result name="ERROR">
+				/WEB-INF/admin/error.jsp?channelId=${channelId}
+			</result>
+		</action>
+
+		<action name="modIndex" class="adminPhoto"
+			method="photoIndexadmin">
+			<result>
+				/WEB-INF/admin/modPhoto.jsp?channelId=${channelId}
+			</result>
+		</action>
+
+
+		<!-- 添加图片 -->
+		<action name="addPhoto" class="adminPhoto" method="addPhoto">
+
+			<result name="input" type="redirect">
+				/WEB-INF/admin/photoIndex.jspx?channelId=${channelId}
+			</result>
+			<result>
+				/WEB-INF/admin/addPhoto.jsp?channelId=${channelId}
+			</result>
+		</action>
+
+
+		<!-- 修改图片 -->
+		<action name="modPhoto" class="adminPhoto" method="modPhoto">
+			<result>
+				/WEB-INF/admin/adminPhoto.jsp?channelId=${channelId}
+			</result>
+		</action>
+
+
+		<!-- 图片管理首页 -->
+		<action name="adminPhoto" class="adminPhoto"
+			method="photoIndex">
+			<result>
+				/WEB-INF/admin/adminPhoto.jsp?channelId=${channelId}
+			</result>
+		</action>
+		<!-- 删除指定图片 -->
+		<action name="delePhoto" class="adminPhoto"
+			method="delePhoto">
+			<result>
+				/WEB-INF/admin/adminPhoto.jsp?channelId=${channelId}
+			</result>
+			<result name="error">
+				/WEB-INF/admin/error.jsp?channelId=${channelId}
+			</result>
+			<result name="input" type="redirect">
+				/WEB-INF/admin/adminPhoto.jsp?channelId=${channelId}
+			</result>
+		</action>
+
+
+        <action name="ListSoft" class="adminsoft" method="listsoft">
+			<result>/WEB-INF/admin/ListSoft.jsp?channelId=${channelId}</result>
+		</action>
+		<action name="InitAddSoft" class="adminsoft" method="InitAddSoft">
+			<result>/WEB-INF/admin/addsoft.jsp?channelId=${channelId}</result>
+		</action>
+		<action name="setSoftPass" class="adminsoft" method="setSoftPass">
+			<result>/WEB-INF/admin/ListSoft.jsp?channelId=${channelId}</result>
+		</action>
+		<action name="ListsoftUpassOne" class="adminsoft" method="ListsoftUpassOne">
+			<result>/WEB-INF/admin/ListSoftPass.jsp?channelId=${channelId}</result>
+		</action>
+		
+		
+		<action name="addSoft" class="adminsoft" method="addSoft">
+			<result>/WEB-INF/admin/ListSoft.jsp</result>
+		</action>
+		<action name="deleteSoft" class="adminsoft" method="delesoft">
+			<result>/WEB-INF/admin/ListSoft.jsp</result>
+		</action>
+		<action name="findSoft" class="adminsoft" method="findSoft">
+			<result>/WEB-INF/admin/modSoft.jsp</result>
+		</action>
+		<action name="updateSoft" class="adminsoft" method="modsoft">
+			<result>/WEB-INF/admin/ListSoft.jsp</result>
+		</action>
+		
+		<action name="extendSoft" class="adminsoft" method="listSoftExtend">
+			<result>/WEB-INF/admin/extendSoft.jsp</result>
+		</action>
+		<action name="addExtendSoft" class="adminsoft" method="setSoftExtend">
+			<result>/WEB-INF/admin/extendSoft.jsp</result>
+		</action>
+		<action name="ShowDetailSoft" class="adminsoft" method="showDetailEx">
+			<result>/WEB-INF/admin/extendSoftDetail.jsp</result>
+		</action>
+		<action name="saveDetailSoft" class="adminsoft" method="SaveDetailEx">
+			<result>/WEB-INF/admin/extendSoftDetail.jsp</result>
+		</action>
+		<action name="deleSoftExtend" class="adminsoft" method="deletExtend">
+			<result>/WEB-INF/admin/extendSoft.jsp</result>
+		</action>
+		
+		
+		
+		
+		
+
+
+
+
+
+
+		<!-- 商品管理频道 -->
+
+		<action name="initSetProduct" class="setProduct"
+			method="initPro">
+			<result>
+				/WEB-INF/admin/setProduct.jsp?channelId=${channelId}
+			</result>
+		</action>
+		<action name="SetProduct" class="setProduct" method="setHot">
+			<result>
+				/WEB-INF/admin/ListProduct.jsp?channelId=${channelId}
+			</result>
+		</action>
+
+
+
+		<!-- 添加商品初始化 -->
+		<action name="initAddProduct" class="adminProduct"
+			method="initAddProduct">
+			<result>
+				/WEB-INF/admin/addProduct.jsp?channelId=${channelId}
+			</result>
+			<result name="input">/WEB-INF/admin/error.jsp</result>
+		</action>
+
+		<!-- 添加商品 -->
+
+		<action name="addProduct" class="adminProduct"
+			method="addProduct">
+			<result>
+				/WEB-INF/admin/ListProduct.jsp?channelId=${channelId}
+			</result>
+			<result name="input">
+				/WEB-INF/admin/ListProduct.jsp?channelId=${channelId}
+			</result>
+		</action>
+
+		<action name="modProduct" class="adminProduct"
+			method="ModProduct">
+			<result>
+				/WEB-INF/admin/ListProduct.jsp?channelId=${channelId}
+			</result>
+		</action>
+
+        <action name="setProductCurey" class="adminProduct"
+			method="setProductCurey">
+			<result>
+				/WEB-INF/admin/ListProduct.jsp?channelId=${channelId}
+			</result>
+		</action>
+		<action name="setProductContact" class="adminProduct"
+			method="setProductContact">
+			<result>
+				/WEB-INF/admin/ListProduct.jsp?channelId=${channelId}
+			</result>
+		</action>
+		<action name="ShowProXls" class="adminProduct"
+			method="getXls">
+			<!-- 列举所有的会员卡 -->
+		</action>
+
+		<action name="ListClassProduct" class="adminProduct"
+			method="listProClass">
+			<result>
+				/WEB-INF/admin/ListProductClass.jsp?channelId=${channelId}&amp;classId=${classId}
+			</result>
+		</action>
+
+
+		<action name="ListProduct" class="adminProduct"
+			method="listPro">
+			<result>
+				/WEB-INF/admin/ListProduct.jsp?channelId=${channelId}
+			</result>
+		</action>
+		<action name="ListProductSimple" class="adminProduct"
+			method="listPro">
+			<result>
+				/WEB-INF/admin/ListProductSimple.jsp?channelId=${channelId}
+			</result>
+		</action>
+		
+		<action name="setProductPass" class="adminProduct" method="setProductPass">
+			<result>/WEB-INF/admin/ListProduct.jsp?channelId=${channelId}</result>
+		</action>
+
+
+		<action name="extendProduct" class="adminProduct"
+			method="listProductExtend">
+			<result>
+				/WEB-INF/admin/addProductExtend.jsp?channelId=${channelId}
+			</result>
+		</action>
+		<action name="setextendProduct" class="adminProduct"
+			method="setProductExtend">
+			<result>
+				/WEB-INF/admin/addProductExtend.jsp?channelId=${channelId}
+			</result>
+		</action>
+		<action name="showDetailEx" class="adminProduct"
+			method="showDetailEx">
+			<result>
+				/WEB-INF/admin/ProductExtendDetail.jsp?channelId=${channelId}
+			</result>
+		</action>
+		<action name="SaveDetailEx" class="adminProduct"
+			method="SaveDetailEx">
+			<result>
+				/WEB-INF/admin/ProductExtendDetail.jsp?channelId=${channelId}
+			</result>
+		</action>
+		<action name="deletExtend" class="adminProduct"
+			method="deletExtend">
+			<result>
+				/WEB-INF/admin/addProductExtend.jsp?channelId=${channelId}
+			</result>
+		</action>
+
+
+
+
+
+
+
+
+		<!-- 删除商品 -->
+		<action name="deleProduct" class="adminProduct"
+			method="deleProduct">
+			<result>
+				/WEB-INF/admin/ListProduct.jsp?channelId=${channelId}
+			</result>
+			<result name="input">
+				/WEB-INF/admin/ListProduct.jsp?channelId=${channelId}
+			</result>
+		</action>
+		<action name="listOtherProduct" class="adminProduct"
+			method="ListDetailPro">
+			<result>/WEB-INF/admin/ListOtherProduct.jsp</result>
+		</action>
+
+		<action name="serProductList" class="adminProduct"
+			method="serProductList">
+			<result>/WEB-INF/admin/ListSerch.jsp</result>
+			<result name="error">/WEB-INF/admin/ListSerch.jsp</result>
+		</action>
+
+
+
+		<!-- 修改商品 -->
+
+		<action name="initMod" class="adminProduct" method="initMod">
+			<result>
+				/WEB-INF/admin/modProduct.jsp?channelId=${channelId}
+			</result>
+			<result name="input">/WEB-INF/admin/error.jsp</result>
+		</action>
+
+		<!-- 商品详细信息 -->
+		<action name="ShowProDetail" class="adminProduct"
+			method="initMod">
+			<result>
+				/WEB-INF/admin/ShowProDetail.jsp?channelId=${channelId}
+			</result>
+			<result name="input">/WEB-INF/admin/error.jsp</result>
+		</action>
+		
+		
+		<action name="ShowProCurvey" class="adminProduct"
+			method="initMod">
+			<result>
+				/WEB-INF/admin/ShowProDetailCurey.jsp?channelId=${channelId}
+			</result>
+			<result name="input">/WEB-INF/admin/error.jsp</result>
+		</action>
+		<action name="ShowProContact" class="adminProduct"
+			method="initMod">
+			<result>
+				/WEB-INF/admin/ShowProDetailContact.jsp?channelId=${channelId}
+			</result>
+			<result name="input">/WEB-INF/admin/error.jsp</result>
+		</action>
+
+
+		<!-- 添加商品图片 -->
+		<action name="addproPhoto" class="adminProduct"
+			method="addproPhoto">
+			<result>
+				/WEB-INF/admin/addproPhoto.jsp?channelId=${channelId}
+			</result>
+		</action>
+
+		<!-- 厂商店家管理  厂商和店家有权利添加商品 -->
+		<action name="initAddProducter" class="adminProducter"
+			method="initAddProducter">
+			<result>
+				/WEB-INF/admin/addProducter.jsp?channelId=${channelId}
+			</result>
+		</action>
+		
+		
+		
+		
+		<action name="AddProducter" class="adminProducter"
+			method="addProducter">
+			<result>
+				/WEB-INF/admin/ListProducter.jsp?channelId=${channelId}
+			</result>
+		</action>
+
+		<action name="listProducter" class="adminProducter"
+			method="listProductor">
+			<result>
+				/WEB-INF/admin/ListProducter.jsp?channelId=${channelId}
+			</result>
+		</action>
+		
+		
+		
+
+		<!-- 删除功能 -->
+		<action name="deleProducter" class="adminProducter"
+			method="deleteProducter">
+			<result>
+				/WEB-INF/admin/ListProducter.jsp?channelId=${channelId}
+			</result>
+		</action>
+
+		<!-- 修改功能 -->
+		<action name="modProducter" class="adminProducter"
+			method="modProducter">
+			<result name="input">
+				/WEB-INF/admin/modProducter.jsp?channelId=${channelId}
+			</result>
+			<result>
+				/WEB-INF/admin/modProducter.jsp?channelId=${channelId}
+			</result>
+		</action>
+		
+		<action name="showProducter" class="adminProducter"
+			method="findProducter">
+			<result name="input">
+				/WEB-INF/admin/showProducter.jsp?channelId=${channelId}
+			</result>
+			<result>
+				/WEB-INF/admin/showProducter.jsp?channelId=${channelId}
+			</result>
+		</action>
+		
+		<action name="updateProducter" class="adminProducter"
+			method="updateProducter">
+			<result>
+				/WEB-INF/admin/ListProducter.jsp?channelId=${channelId}
+			</result>
+		</action>
+
+		<action name="setProducter" class="adminProducter"
+			method="setProducter">
+			<result>
+				/WEB-INF/admin/ListProducter.jsp?channelId=${channelId}
+			</result>
+		</action>
+
+
+		<!-- 广告管理方面 -->
+
+
+		<action name="adminAd" class="adminAd" method="ListAd">
+			<result>
+				/WEB-INF/admin/addAd.jsp?channelId=${channelId}
+			</result>
+		</action>
+
+		<action name="ListAd" class="adminAd" method="ListAd">
+			<result>
+				/WEB-INF/admin/addAd.jsp?channelId=${channelId}
+			</result>
+			<result name="error">
+				/WEB-INF/admin/ListAd.jsp?channelId=${channelId}
+			</result>
+		</action>
+
+
+		<action name="ListAll" class="adminAd" method="ListAll">
+			<result>
+				/WEB-INF/admin/ListAd.jsp?channelId=${channelId}
+			</result>
+
+		</action>
+
+
+
+		<action name="initModAd" class="adminAd" method="initModAd">
+			<result>
+				/WEB-INF/admin/modAd.jsp?channelId=${channelId}
+			</result>
+
+		</action>
+
+		<action name="modAd" class="adminAd" method="modAd">
+			<result>
+				/WEB-INF/admin/ListAd.jsp?channelId=${channelId}
+			</result>
+			<result name="error">
+				/WEB-INF/error.jsp?channelId=${channelId}
+			</result>
+		</action>
+
+		<action name="addListAd" class="adminAd" method="ListAd">
+			<result>
+				/WEB-INF/admin/ListAd.jsp?channelId=${channelId}
+			</result>
+			<result name="error">/WEB-INF/admin/ListAd.jsp</result>
+		</action>
+
+		<action name="addAd" class="adminAd" method="addAd">
+			<result>
+				/WEB-INF/admin/ListAd.jsp?channelId=${channelId}
+			</result>
+			<result name="error">
+				/WEB-INF/admin/addAd.jspx?channelId=${channelId}
+			</result>
+		</action>
+
+
+		<action name="findAd" class="adminAd" method="findAd">
+			<result>/WEB-INF/admin/modAd.jsp</result>
+			<result name="error">
+				/WEB-INF/admin/error.jsp?channelId=${channelId}
+			</result>
+		</action>
+
+
+		<action name="deleAd" class="adminAd" method="deleAd">
+			<result>
+				/WEB-INF/admin/ListAd.jsp?channelId=${channelId}
+			</result>
+			<result name="error">
+				/WEB-INF/admin/error.jsp?channelId=${channelId}
+			</result>
+		</action>
+
+
+
+		<!-- 品牌管理 -->
+
+          
+          <action name="addTradeinit" class="adminTrademark">
+			<result>
+				/WEB-INF/admin/addTradMark.jsp?channelId=${channelId}
+			</result>
+		</action>
+        
+		<action name="addTrade" class="adminTrademark"
+			method="addTradeMark">
+			<result name="input">
+				/WEB-INF/admin/addTradMark.jsp?channelId=${channelId}
+			</result>
+			<result>
+				/WEB-INF/admin/ListTradMark.jsp?channelId=${channelId}
+			</result>
+
+		</action>
+		<!-- 品牌列表 -->
+		<action name="ListTradMark" class="adminTrademark"
+			method="ListTradMark">
+			<result>
+				/WEB-INF/admin/ListTradMark.jsp?channelId=${channelId}
+			</result>
+		</action>
+		<!-- 品牌删除 -->
+		<action name="deleTrad" class="adminTrademark"
+			method="deleTrad">
+			<result>
+				/WEB-INF/admin/ListTradMark.jsp?channelId=${channelId}
+			</result>
+		</action>
+		<!-- 品牌修改 -->
+
+		<action name="initUpdate" class="adminTrademark"
+			method="initUpdate">
+			<result>
+				/WEB-INF/admin/modTradMark.jsp?channelId=${channelId}
+			</result>
+		</action>
+
+		<action name="updateTrad" class="adminTrademark"
+			method="updateTrad">
+			<result>
+				/WEB-INF/admin/ListTradMark.jsp?channelId=${channelId}
+			</result>
+		</action>
+
+
+
+		<!-- 评论管理 -->
+
+
+		<action name="adminComment" class="adminComment"
+			method="ListComment">
+			<result>/WEB-INF/admin/addComment.jsp</result>
+		</action>
+
+		<action name="ListComment" class="adminComment"
+			method="ListComment">
+			<result>
+				/WEB-INF/admin/modComment.jsp?commentId=${commentId}
+			</result>
+			<result name="error">/WEB-INF/admin/ListComment.jsp</result>
+		</action>
+
+
+		<action name="ListAllComment" class="adminComment"
+			method="ListAll">
+			<result>/WEB-INF/admin/ListComment.jsp</result>
+		</action>
+
+
+
+		<action name="modComment" class="adminComment"
+			method="modComment">
+			<result>/WEB-INF/admin/ListComment.jsp</result>
+			<result name="error">
+				/WEB-INF/admin/modComment.jspx
+			</result>
+		</action>
+
+         <action name="updateComment" class="adminComment"
+			method="updateComment">
+			<result>/WEB-INF/admin/ListComment.jsp</result>
+		</action>
+
+
+		<action name="deleComment" class="adminComment"
+			method="deleComment">
+			<result>/WEB-INF/admin/ListComment.jsp</result>
+			<result name="error">/WEB-INF/admin/error.jsp</result>
+		</action>
+
+		<!-- 会员管理 -->
+
+		<action name="adminUser" class="adminUser" method="ListUser">
+			<result>/WEB-INF/admin/addUser.jsp</result>
+		</action>
+
+		<action name="ListUser" class="adminUser" method="ListUser">
+			<result>/WEB-INF/admin/addUser.jsp</result>
+			<result name="error">/WEB-INF/admin/ListUser.jsp</result>
+		</action>
+
+		<action name="userByUserGroup" class="adminUser"
+			method="listByUser">
+			<result>/WEB-INF/admin/listUserByg.jsp</result>
+		</action>
+
+
+
+
+		<action name="ListAllUser" class="adminUser"
+			method="ListAllUser">
+			<result>/WEB-INF/admin/ListUser.jsp</result>
+
+		</action>
+
+        <action name="ListAllUserSelect" class="adminUser"
+			method="ListAllUser">
+			<result>/WEB-INF/admin/ListAllUserSelect.jsp</result>
+		</action>
+
+		<action name="UserDetail" class="adminUser"
+			method="userDetail">
+			<result>/WEB-INF/admin/UserDetail.jsp</result>
+		</action>
+
+
+
+		<action name="initModUser" class="adminUser"
+			method="initModUser">
+			<result>/WEB-INF/admin/modUser.jsp</result>
+
+		</action>
+
+		<action name="modUser" class="adminUser" method="modUser">
+			<result>/WEB-INF/admin/ListUser.jsp</result>
+			<result name="error">/WEB-INF/admin/error.jsp</result>
+		</action>
+
+
+
+		<action name="addListUser" class="adminUser"
+			method="addListUser">
+			<result>/WEB-INF/admin/ListUser.jsp</result>
+			<result name="error">/WEB-INF/admin/ListUser.jsp</result>
+		</action>
+
+		<action name="addUser" class="adminUser" method="addUser">
+			<result type="redirect">/WEB-INF/admin/ListUser.jsp</result>
+			<result name="error">/WEB-INF/admin/addUser.jspx</result>
+		</action>
+
+
+		<action name="findUserDetail" class="adminUser"
+			method="findUser">
+			<result>/WEB-INF/admin/findUserDetail.jsp</result>
+			<result name="error">/WEB-INF/admin/error.jsp</result>
+		</action>
+
+		<action name="findUser" class="adminUser" method="findUser">
+			<result>/WEB-INF/admin/modUser.jsp</result>
+			<result name="error">/WEB-INF/admin/error.jsp</result>
+		</action>
+
+
+		<action name="deleUser" class="adminUser" method="deleUser">
+			<result>/WEB-INF/admin/ListUser.jsp</result>
+			<result name="error">/WEB-INF/admin/error.jsp</result>
+		</action>
+		<action name="movUserTo" class="adminUser" method="movUserTo">
+			<result>/WEB-INF/admin/ListUser.jsp</result>
+		</action>
+
+
+
+		<!-- 管理员管理 -->
+
+		<action name="addNewAdmin" class="admin" method="addAdmin">
+			<result>/WEB-INF/admin/addAdmin.jsp</result>
+			<result name="error">/WEB-INF/admin/error.jsp</result>
+		</action>
+		<!-- 显示管理员列表 -->
+
+		<!-- 设置管理员 -->
+		<action name="findAdmin" class="admin" method="findAdmin">
+			<result>/WEB-INF/admin/setAdmin.jsp</result>
+		</action>
+
+		<action name="setAdmin" class="admin" method="setAdmin">
+			<result>/WEB-INF/admin/setAdmin.jsp</result>
+		</action>
+
+		<!-- 设置管理员 -->
+
+		<action name="listAdmin" class="admin" method="listAdmin">
+			<result>/WEB-INF/admin/addAdmin.jsp</result>
+			<result name="error">/WEB-INF/admin/error.jsp</result>
+		</action>
+
+		<action name="deleAdmin" class="admin" method="deleAdmin">
+			<result>/WEB-INF/admin/addAdmin.jsp</result>
+			<result name="error">/WEB-INF/admin/error.jsp</result>
+		</action>
+
+		<!-- 首页幻灯管理 -->
+
+		<action name="addSlid" class="adminSlid" method="addSlid">
+			<result>/WEB-INF/admin/listSlid.jsp</result>
+		</action>
+		<action name="deleteSlid" class="adminSlid"
+			method="deleteSlid">
+			<result>/WEB-INF/admin/listSlid.jsp</result>
+		</action>
+		<action name="modSlid" class="adminSlid" method="Init">
+			<result>/WEB-INF/admin/modSlid.jsp</result>
+		</action>
+		<action name="update" class="adminSlid" method="modSlid">
+			<result>/WEB-INF/admin/listSlid.jsp</result>
+			<result name="input">/WEB-INF/admin/modSlid.jsp</result>
+
+		</action>
+		<action name="listSlid" class="adminSlid" method="listSlid">
+			<result>/WEB-INF/admin/listSlid.jsp</result>
+		</action>
+
+
+
+
+
+
+		<!-- 留言管理 -->
+
+
+
+		<action name="adminBook" class="adminBook" method="ListBook">
+			<result>/WEB-INF/admin/addBook.jsp</result>
+		</action>
+
+		<action name="ListBook" class="adminBook" method="ListBook">
+			<result>/WEB-INF/admin/addBook.jsp</result>
+			<result name="error">/WEB-INF/admin/ListBook.jsp</result>
+		</action>
+
+
+		<action name="ListAllBook" class="adminBook"
+			method="ListAllBook">
+			<result>/WEB-INF/admin/ListBook.jsp</result>
+
+		</action>
+
+
+
+		<action name="initModBook" class="adminBook"
+			method="initModBook">
+			<result>/WEB-INF/admin/modBook.jsp</result>
+
+		</action>
+
+		<action name="modBook" class="adminBook" method="modBook">
+			<result>/WEB-INF/admin/ListBook.jsp</result>
+			<result name="error">/WEB-INF/admin/error.jsp</result>
+		</action>
+
+
+
+		<action name="findBook" class="adminBook" method="findBook">
+			<result>/WEB-INF/admin/modBook.jsp</result>
+			<result name="error">/WEB-INF/admin/error.jsp</result>
+		</action>
+
+
+		<action name="deleBook" class="adminBook" method="deleBook">
+			<result>/WEB-INF/admin/ListBook.jsp</result>
+			<result name="error">/WEB-INF/admin/error.jsp</result>
+		</action>
+
+		<!--关于友情链接管理  -->
+		<action name="adminLinks" class="adminLinks"
+			method="ListLinks">
+			<result>/WEB-INF/admin/addLinks.jsp</result>
+		</action>
+
+		<action name="ListLinks" class="adminLinks"
+			method="ListLinks">
+			<result>/WEB-INF/admin/addLinks.jsp</result>
+			<result name="error">/WEB-INF/admin/ListLinks.jsp</result>
+		</action>
+
+
+		<action name="ListAllLinks" class="adminLinks"
+			method="ListAllLinks">
+			<result>/WEB-INF/admin/ListLinks.jsp</result>
+
+		</action>
+
+
+
+		<action name="initModLinks" class="adminLinks"
+			method="initModLinks">
+			<result>/WEB-INF/admin/modLinks.jsp</result>
+
+		</action>
+
+		<action name="modLinks" class="adminLinks" method="modLinks">
+			<result>/WEB-INF/admin/ListLinks.jsp</result>
+			<result name="error">/WEB-INF/admin/error.jsp</result>
+		</action>
+
+		<action name="addListLinks" class="adminLinks"
+			method="addListLinks">
+			<result>/WEB-INF/admin/ListLinks.jsp</result>
+			<result name="error">/WEB-INF/admin/ListLinks.jsp</result>
+		</action>
+
+		<action name="addLinks" class="adminLinks" method="addLinks">
+			<result>/WEB-INF/admin/ListLinks.jsp</result>
+			<result name="error">/WEB-INF/admin/addLinks.jspx</result>
+		</action>
+
+
+		<action name="findLinks" class="adminLinks"
+			method="findLinks">
+			<result>/WEB-INF/admin/modLinks.jsp</result>
+			<result name="error">/WEB-INF/admin/error.jsp</result>
+		</action>
+
+
+		<action name="deleLinks" class="adminLinks"
+			method="deleLinks">
+			<result>
+				/WEB-INF/admin/ListLinks.jsp
+			</result>
+			<result name="error">/WEB-INF/admin/error.jsp</result>
+		</action>
+
+
+		<!-- 订单管理 -->
+
+
+
+
+
+		<action name="SendGoods" class="adminOrderForm"
+			method="InitSends">
+			<result>/WEB-INF/admin/SendGoods.jsp?msg=ok</result>
+		</action>
+		<action name="SendGoodsupdate" class="adminOrderForm"
+			method="SendGoods">
+			<result>/WEB-INF/admin/SendGoods.jsp?msg=ok</result>
+		</action>
+		<action name="SendReGoods" class="adminOrderForm"
+			method="SendReGoods">
+			<result>/WEB-INF/admin/SendReGoods.jsp?msg=ok</result>
+		</action>
+
+
+      <action name="getDelediver" class="adminOrderForm"
+			method="getDelediver">
+			<result>/WEB-INF/admin/listDeleStat.jsp?msg=ok</result>
+		</action>
+       <!-- 删除送货条目 -->
+       
+      <action name="delListDelevelproduct" class="adminOrderForm"
+			method="delListDelevelproduct">
+			<result>/WEB-INF/admin/listDeleStat.jsp?msg=ok</result>
+		</action>
+        
+
+
+		<action name="ListOrderByClass" class="adminOrderForm"
+			method="OtherForm">
+			<result>/WEB-INF/admin/ListOtherFormjsp.jsp</result>
+		</action>
+
+
+
+		<action name="ListAllorder" class="adminOrderForm"
+			method="ListAll">
+			<result>/WEB-INF/admin/ListOrderForm.jsp</result>
+		</action>
+		<action name="deleOrder" class="adminOrderForm"
+			method="deleOrder">
+			<result>/WEB-INF/admin/ListOrderForm.jsp</result>
+		</action>
+
+		<action name="updateOrder" class="adminOrderForm"
+			method="updateOrder">
+			<result>/WEB-INF/admin/ListOrderForm.jsp</result>
+		</action>
+
+		<action name="findorder" class="adminOrderForm"
+			method="findorder">
+			<result>/WEB-INF/admin/ListOrderFormDetail.jsp</result>
+		</action>
+
+
+		<!-- 部分收款 -->
+		<action name="getReCepMoney" class="adminOrderForm"
+			method="getReCepMoney">
+			<result>/WEB-INF/admin/ListOrderFormDetail.jsp</result>
+		</action>
+		<action name="getRetCepMoney" class="adminOrderForm"
+			method="getRetCepMoney">
+			<result>/WEB-INF/admin/ListOrderFormDetail.jsp</result>
+		</action>
+
+
+
+		<action name="createIndex" class="adminCreateHtml"
+			method="createIndex">
+			<result>/WEB-INF/admin/error.jsp</result>
+		</action>
+
+		<!-- 会员卡管理 -->
+
+
+		<!-- 未销售的会员卡管理 -->
+
+		<action name="ausercard">
+			<result>/WEB-INF/admin/madeusercard.jsp</result>
+		</action>
+
+		<action name="serverInfo">
+			<result>/WEB-INF/admin/serverinfo.jsp</result>
+		</action>
+
+		<action name="madecard" class="adminCard" method="addCard">
+			<!-- 列举所有的会员卡 -->
+			<result name="input">
+				/WEB-INF/admin/madeusercard.jsp
+			</result>
+			<result>/WEB-INF/admin/ListAllCard.jsp</result>
+		</action>
+
+		<action name="ShowXls" class="adminCard" method="getXls">
+			<!-- 列举所有的会员卡 -->
+		</action>
+
+
+
+
+		<action name="listUserCard" class="adminCard"
+			method="listunsalCard">
+			<!-- 列举所有的会员卡 -->
+			<result>/WEB-INF/admin/ListAllCard.jsp</result>
+		</action>
+		<action name="listSalUserCard" class="adminCard"
+			method="listsalCard">
+			<!-- 列举所有销售的会员卡 -->
+			<result>/WEB-INF/admin/ListSalCard.jsp</result>
+		</action>
+
+
+
+		<action name="listMoneyCard" class="adminCard"
+			method="listOverCard">
+			<!--已经充值的会员卡 -->
+			<result>/WEB-INF/admin/ListMoneyCard.jsp</result>
+		</action>
+
+		<!-- 列举模板 -->
+		<action name="listStyleName" class="adminStyleName"
+			method="listPage">
+			<result>/WEB-INF/admin/listStyleName.jsp</result>
+		</action>
+
+		<!-- 修改模版 -->
+		<action name="modStyleName" class="adminStyleName"
+			method="listPage">
+			<result>/WEB-INF/admin/updateStyleName.jsp</result>
+		</action>
+		<!-- 修改模版 -->
+		<action name="updateStyleName" class="adminStyleName"
+			method="updateName">
+			<result>/WEB-INF/admin/listStyleName.jsp</result>
+		</action>
+
+		<action name="deleteStyleName" class="adminStyleName"
+			method="deleteName">
+			<result>/WEB-INF/admin/listStyleName.jsp</result>
+		</action>
+
+
+		<action name="initStyleName" class="adminStyleName"
+			method="listPage">
+			<result>/WEB-INF/admin/addStyleName.jsp</result>
+		</action>
+		<action name="addStyleName" class="adminStyleName"
+			method="addStyleName">
+			<result>/WEB-INF/admin/listStyleName.jsp</result>
+		</action>
+
+		<action name="UserStyleFile" class="StyleFile"
+			method="listStyleFile">
+			<result>/WEB-INF/admin/UserFile.jsp</result>
+		</action>
+
+		<action name="modMuban" class="StyleFile" method="findFile">
+			<result>
+				/WEB-INF/admin/modMuban.jsp?fileName=${fileName}
+			</result>
+		</action>
+
+
+
+
+		<action name="addAdmin">
+			<result>/WEB-INF/admin/addAdmin.jsp</result>
+		</action>
+		<action name="setAdminPass">
+			<result>/WEB-INF/admin/setAdminPass.jsp</result>
+		</action>
+
+		<action name="serverinfo">
+			<result>/WEB-INF/admin/serverinfo.jsp</result>
+		</action>
+
+
+
+
+		<action name="saveFile" class="StyleFile" method="saveFile">
+			<result>
+				/WEB-INF/admin/modMuban.jsp?filep=${fileName}
+			</result>
+		</action>
+
+		<action name="delteFile" class="StyleFile" method="deleFile">
+			<result>/WEB-INF/admin/UserFile.jsp</result>
+		</action>
+
+		<action name="createFile" class="StyleFile"
+			method="createFile">
+			<result>/WEB-INF/admin/UserFile.jsp</result>
+		</action>
+
+
+		<action name="dwonFile" class="StyleFile" method="downFile">
+			<result>
+				/WEB-INF/admin/downFile.jsp?filep=${fileName}
+			</result>
+		</action>
+		<action name="setYeePay" class="apay" method="setYeePay">
+			<result>/WEB-INF/admin/setPay.jsp</result>
+		</action>
+		<action name="listYeePay" class="apay" method="findYeePay">
+			<result>/WEB-INF/admin/setPay.jsp</result>
+		</action>
+
+
+
+
+
+		<!-- 关于会员模板 -->
+		<action name="modUserMuBan" class="StyleFile"
+			method="modUserMuBan">
+			<result>/WEB-INF/admin/UserVipFile.jsp</result>
+		</action>
+		<action name="createUserFile" class="StyleFile"
+			method="createUserFile">
+			<result>/WEB-INF/admin/UserVipFile.jsp</result>
+		</action>
+		<action name="saveUserFile" class="StyleFile"
+			method="saveUserFile">
+			<result>
+				/WEB-INF/admin/modUserMuban.jsp?filep=${fileName}
+			</result>
+		</action>
+
+		<action name="findUserFile" class="StyleFile"
+			method="findUserFile">
+			<result>
+				/WEB-INF/admin/modUserMuban.jsp?filep=${fileName}
+			</result>
+		</action>
+
+		<action name="deleUserFile" class="StyleFile"
+			method="deleUserFile">
+			<result>
+				/WEB-INF/admin/UserVipFile.jsp?filep=${fileName}
+			</result>
+		</action>
+		<action name="downUserFile" class="StyleFile"
+			method="downUserFile">
+			<result>
+				/WEB-INF/admin/UserVipFile.jsp?filep=${fileName}
+			</result>
+		</action>
+
+		<action name="Interface">
+			<result>/WEB-INF/admin/Interface.jsp</result>
+		</action>
+		<action name="InterfaceFile">
+			<result>/WEB-INF/admin/InterfaceFile.jsp</result>
+		</action>
+
+		<action name="addSildpic">
+			<result>/WEB-INF/admin/addSlid.jsp</result>
+		</action>
+
+		<action name="logBean" class="logBean" method="listlog">
+			<result>/WEB-INF/admin/listlog.jsp</result>
+		</action>
+		<action name="UserMoneylogBean" class="logBean" method="listlog">
+			<result>/WEB-INF/admin/listlogUserMoney.jsp</result>
+		</action>
+		<action name="dellog" class="logBean" method="delete">
+			<result>/WEB-INF/admin/listlog.jsp</result>
+		</action>
+		<action name="linkUs">
+			<result>/WEB-INF/admin/linkUs.jsp</result>
+		</action>
+		
+		
+         <action name="addSubClassTypeinit" class="adminSubClass" method="Init">
+         <result>/WEB-INF/admin/classSub/addClassType.jsp</result>
+         </action>
+         <action name="modSubClassTypeinit" class="adminSubClass" method="Init">
+         <result>/WEB-INF/admin/classSub/modClassType.jsp</result>
+         </action>
+        
+          <action name="modSubClassTypeenb" class="adminSubClass" method="setSubClassEnable">
+         <result>/WEB-INF/admin/classSub/listSubClassType.jsp</result>
+         </action>
+          <action name="modSubClassType" class="adminSubClass" method="modSubClass">
+         <result>/WEB-INF/admin/classSub/listSubClassType.jsp</result>
+         </action>
+         <action name="addSubClassType" class="adminSubClass" method="addSubClass">
+         <result>/WEB-INF/admin/classSub/listSubClassType.jsp</result>
+         </action>
+         <action name="listSubClassType" class="adminSubClass" method="listSubClass">
+         <result>/WEB-INF/admin/classSub/listSubClassType.jsp</result>
+         </action>
+          <action name="deleSubClassType" class="adminSubClass" method="deleteSub">
+         <result>/WEB-INF/admin/classSub/listSubClassType.jsp</result>
+         </action>
+          <action name="listSubClassAmount" class="adminSubClass" method="listShowServery">
+         <result>/WEB-INF/admin/classSub/listSubClassAcount.jsp</result>
+         </action>
+        
+         
+         
+         
+         <!-- 添加问卷调查题目 addClassTitle.jspx?cid=1-->
+         <action name="listSubClassTitle" class="adminClassTitle" method="listClassTitle">
+         <result>/WEB-INF/admin/classSub/listClassTitle.jsp</result>
+         </action>
+         <action name="addSubClassTitle" class="adminClassTitle" method="addTitle">
+         <result>/WEB-INF/admin/classSub/listClassTitle.jsp</result>
+         </action>
+          <action name="modSubClassTitleinit" class="adminClassTitle" method="init">
+         <result>/WEB-INF/admin/classSub/modClassTitle.jsp</result>
+         </action>
+         <action name="modSubClassTitle" class="adminClassTitle" method="modTitle">
+         <result>/WEB-INF/admin/classSub/listClassTitle.jsp</result>
+         </action>
+          <action name="setSubClassTitle" class="adminClassTitle" method="setTitle">
+         <result>/WEB-INF/admin/classSub/listClassTitle.jsp</result>
+         </action>
+          <action name="paixunSubClassTitle" class="adminClassTitle" method="paiTitle">
+         <result>/WEB-INF/admin/classSub/listClassTitle.jsp</result>
+         </action>
+         
+         <action name="addAnserinit"  class="adminAnser" method="init">
+         <result>/WEB-INF/admin/classSub/addAnser.jsp</result>
+         </action>
+         <action name="addAnser"  class="adminAnser" method="addAnswer">
+         <result>/WEB-INF/admin/classSub/addAnser.jsp</result>
+         </action>
+         <action name="modAnserinit"  class="adminAnser" method="init">
+         <result>/WEB-INF/admin/classSub/modAnser.jsp</result>
+         </action>
+          <action name="modAnser"  class="adminAnser" method="modAnswer">
+         <result>/WEB-INF/admin/classSub/addAnser.jsp</result>
+         </action>
+           <action name="deleAnserinit"  class="adminAnser" method="deteAnswer">
+         <result>/WEB-INF/admin/classSub/addAnser.jsp</result>
+         </action>
+         
+
+          <action name="deleteClassTitle" class="adminClassTitle" method="deleteTitle">
+         <result>/WEB-INF/admin/classSub/listClassTitle.jsp</result>
+         </action>
+         
+          <action name="adminMsg" class="managerMsg" method="adminMsg">
+         <result>/WEB-INF/admin/managerMsg.jsp</result>
+         </action>
+         
+         <action name="SendMsg" class="managerMsg" method="initMsg">
+         <result>/WEB-INF/admin/SendMsg.jsp</result>
+         </action>
+         <action name="SendUserMsg" class="managerMsg" method="initMsg">
+         <result>/WEB-INF/admin/SendUserMsg.jsp</result>
+         </action>
+         <action name="UpdateUserMsg" class="managerMsg" method="addMsg">
+         <result>/WEB-INF/admin/SendUserMsg.jsp</result>
+         </action>
+         
+         <action name="UpdateMsg" class="managerMsg" method="addMsg">
+         <result>/WEB-INF/admin/SendMsg.jsp</result>
+         </action>
+         <action name="delSubMsg" class="managerMsg" method="deleteSub">
+         <result>/WEB-INF/admin/${linkUrl}</result>
+         </action>
+         <action name="delOverMsg" class="managerMsg" method="deleteOver">
+         <result>/WEB-INF/admin/${linkUrl}</result>
+         </action>
+         <action name="relDelMsg" class="managerMsg" method="relDelMsg">
+         <result>/WEB-INF/admin/${linkUrl}</result>
+         </action>
+         <action name="breadmsg" class="managerMsg" method="breadmsg">
+         <result>/WEB-INF/admin/${linkUrl}</result>
+         </action>
+         
+         <action name="ListReceveMsg" class="managerMsg" method="adminMsg">
+         <result>/WEB-INF/admin/listReceiMsg.jsp</result>
+         </action>
+         <action name="listSendMsg" class="managerMsg" method="adminMsg">
+         <result>/WEB-INF/admin/listSendMsg.jsp</result>
+         </action>
+         <action name="listConMsg" class="managerMsg" method="adminMsg">
+         <result>/WEB-INF/admin/listcomMsg.jsp</result>
+         </action>
+          <action name="listDelMsg" class="managerMsg" method="adminMsg">
+         <result>/WEB-INF/admin/listdelMsg.jsp</result>
+         </action>
+          <action name="getNewMsg" class="managerMsg" method="getNewMsg">
+         <result>/WEB-INF/admin/showNewsMsg.jsp</result>
+         </action>
+         
+         <!-- 用户自定也页面管理 -->
+         
+         <action name="ListUserDefindClass" class="adminUserDefineClass" method="ListUserDefine">
+         <result>
+         /WEB-INF/admin/DefindClassList.jsp
+         </result>
+         </action>
+         
+         <action name="addUserDefindClass" class="adminUserDefineClass" method="addUserDefine">
+         <result>
+         /WEB-INF/admin/DefindClassList.jsp
+         </result>
+         </action>
+         
+         <action name="initmodUserDefindClass" class="adminUserDefineClass" method="findById">
+         <result>
+         /WEB-INF/admin/DefindClassAdd.jsp
+         </result>
+         </action>
+         
+         <action name="modUserDefindClass" class="adminUserDefineClass" method="modUserDefine">
+         <result>
+         /WEB-INF/admin/DefindClassList.jsp
+         </result>
+         </action>
+         
+         <action name="deleteUserDefindClass" class="adminUserDefineClass" method="deleteUserDefine">
+         <result>
+         /WEB-INF/admin/DefindClassList.jsp
+         </result>
+         </action>
+         
+         
+         
+         
+         <!-- 自定义页面管理 -->
+         
+         <action name="ListUserDefindPage" class="adminUserDefine" method="ListPage">
+         <result>
+         /WEB-INF/admin/DefindListPage.jsp
+         </result>
+         </action>
+         
+          <action name="initaddUserDefindPage" class="adminUserDefine" method="init">
+         <result>
+         /WEB-INF/admin/DefindListPageAdd.jsp
+         </result>
+         </action>
+         <action name="addUserDefindPage" class="adminUserDefine" method="addUserPage">
+         <result>
+         /WEB-INF/admin/DefindListPage.jsp
+         </result>
+         </action>
+         
+         <action name="initmodUserDefindPage" class="adminUserDefine" method="findById">
+         <result>
+         /WEB-INF/admin/DefindListPageMod.jsp
+         </result>
+         </action>
+         
+         <action name="modUserDefindPage" class="adminUserDefine" method="modUserPage">
+         <result>
+         /WEB-INF/admin/DefindListPage.jsp
+         </result>
+         </action>
+         
+         <action name="deleteUserDefindPage" class="adminUserDefine" method="deletePage">
+         <result>
+         /WEB-INF/admin/DefindListPage.jsp
+         </result>
+         </action>
+         
+         
+         
+         
+         
+         
+         
+         
+         <action name="ListAllUserCheck" class="adminUser"
+			method="ListAllUser">
+			<result>/WEB-INF/admin/ListAllUserSelect.jsp</result>
+		</action>
+         
+         
+
+	</package>
+
+</struts>

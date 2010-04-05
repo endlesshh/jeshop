@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+	<bean name="JsonProduct" class="com.lxsoft.Client.style.JsonProduct">
+	</bean>
+	<bean name="JsonIndex" class="com.lxsoft.Client.style.JsonIndex">
+	</bean>
+	<bean name="JsonAllProduct" class="com.lxsoft.Client.style.JsonAllProduct">
+	</bean>
+	<bean name="JsonNews" class="com.lxsoft.Client.style.JsonNews">
+	</bean>
+	<bean name="ThreadNews" class="com.lxsoft.Client.style.ThreadNews">
+	</bean>
+	
+	
+	
+	</beans>
+	

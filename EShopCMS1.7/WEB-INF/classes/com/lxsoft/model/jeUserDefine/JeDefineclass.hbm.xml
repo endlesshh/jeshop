@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.lxsoft.model.jeUserDefine.JeDefineclass" table="je_defineclass">
+        <id name="id" type="java.lang.Integer">
+            <column name="ID_" />
+            <generator class="identity"></generator>
+        </id>
+        <property name="name" type="java.lang.String">
+            <column name="Name_" length="256" />
+        </property>
+    </class>
+</hibernate-mapping>

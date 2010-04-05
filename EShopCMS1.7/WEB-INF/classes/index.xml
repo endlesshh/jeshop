@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="frontindex" namespace="/front"
+		extends="struts-default">
+	
+		<interceptors>
+			<interceptor name="safeAllFilter"
+				class="com.lxsoft.action.system.core.safeFiter" />
+			<interceptor-stack name="safeFilter">
+				<interceptor-ref name="safeAllFilter" />
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="safeFilter" />
+
+		<global-results>
+			<result name="error">
+				/WEB-INF/${installDir}/SomeError.jsp
+			</result>
+			<result name="safeTishi">
+				/WEB-INF/${installDir}/safeTishi.jsp
+			</result>
+
+		</global-results>
+
+     
+
+<!-- 
+		<global-exception-mappings>
+			<exception-mapping result="error"
+				exception="java.lang.Exception">
+			</exception-mapping>
+		</global-exception-mappings>
+ -->		
+	
+		<!-- 头部文件 -->
+		<action name="top">
+			<result>/WEB-INF/${installDir}/index.jsp</result>
+		</action>
+		<!-- 会员充值管理页面 -->
+		<action name="UserInMoneyTo" class="usercard" method="checkCodeByIndex">
+			<result>/WEB-INF/common/ToSubToMoney.jsp</result>
+		</action>
+
+		<!-- 首页regeUser -->
+		   <action name="index" class="indexbean" method="startIndex">
+			<result>/WEB-INF/${installDir}/index.jsp</result>
+			<result name="error">
+				/WEB-INF/${installDir}/error.jsp
+			</result>
+			<result name="webClose">
+				/WEB-INF/${installDir}/webClose.jsp
+			</result>
+			
+			
+			
+		</action>
+		<!-- 频道首页 -->
+
+		<action name="ShowChannel" class="frontChannel"
+			method="startChannel">
+			<result>/WEB-INF/${installDir}/${ShowUrl}</result>
+			<result name="error">
+				/WEB-INF/${installDir}/error.jsp
+			</result>
+		</action>
+		
+		
+		
+		
+		<action name="ShowSoft" class="frontSoft"
+			method="startSoft">
+			<result>/WEB-INF/${installDir}/${ShowUrl}</result>
+			<result name="error">
+				/WEB-INF/${installDir}/error.jsp
+			</result>
+		</action>
+
+		<!-- 栏目首页 -->
+		<action name="ShowClass" class="frontClass"
+			method="startClass">
+			<result>/WEB-INF/${installDir}/${linkurl}</result>
+			<result name="error">
+				/WEB-INF/${installDir}/error.jsp
+			</result>
+		</action>
+
+		<!-- 显示文章内容页 -->
+		<action name="ShowArticle" class="Article"
+			method="ShowContent">
+			<result>/WEB-INF/${installDir}/${linkurl}</result>
+			<result name="error">
+				/WEB-INF/${installDir}/error.jsp
+			</result>
+			<result type="redirect" name="regeUser">
+			/user/userviplogin.jspx
+			</result>
+			<result name="ToGetMoneyByUser">
+			/WEB-INF/${installDir}/UserIsGetMoney.jsp
+			</result>
+			</action>
+			
+			<action name="ShowVipArticle" class="Article"
+			method="resetUserMoney">
+			<result>/WEB-INF/${installDir}/${linkurl}</result>
+			<result name="error">
+				/WEB-INF/${installDir}/error.jsp
+			</result>
+			<result type="redirect" name="regeUser">
+			/user/userviplogin.jspx
+			</result>
+			<result name="ToGetMoneyByUser">
+			/WEB-INF/${installDir}/UserIsGetMoney.jsp
+			</result>
+		</action>
+
+		<!-- 显示图片的内容页 -->
+		<action name="ShowPhoto" class="frontPhoto" method="ShowPics">
+			<result>/WEB-INF/${installDir}/${linkurl}</result>
+			<result name="error">
+				/WEB-INF/${installDir}/error.jsp
+			</result>
+		</action>
+
+		<!-- 商品调用首页 -->
+
+		<action name="ShowProduct" class="frontProduct"
+			method="startProduct">
+			<result>/WEB-INF/${installDir}/${linkurl}</result>
+			<result name="error">
+				/WEB-INF/${installDir}/error.jsp
+			</result>
+		</action>
+		<!-- 发送邮件 -->
+		<action name="SendMail" class="SendMail" method="sendTousu">
+			<result>/WEB-INF/${installDir}/tousu.jsp</result>
+		</action>
+		<action name="SendBMMail" class="SendMail" method="baoMing">
+			<result>/WEB-INF/${installDir}/baoming.jsp</result>
+		</action>
+
+
+		<!-- 全文搜索 -->
+		<action name="ShowSeach" class="indexbean"
+			method="startSearch">
+			<result>/WEB-INF/${installDir}/${linkurl}</result>
+			<result name="error">
+				/WEB-INF/${installDir}/error.jsp
+			</result>
+		</action>
+
+		<!-- 商品搜索 -->
+
+
+		<action name="productSearchAPI" class="proAPI"
+			method="ShowProAPIContent">
+			<result>/WEB-INF/${installDir}/${linkurl}</result>
+			<result name="error">
+				/WEB-INF/${installDir}/error.jsp
+			</result>
+		</action>
+
+
+		<!-- 文章搜索 -->
+		<action name="newsSearchAPI" class="SeachAPI" method="SCH">
+			<result>/WEB-INF/${installDir}/${linkurl}</result>
+			<result name="error">
+				/WEB-INF/${installDir}/error.jsp
+			</result>
+		</action>
+
+
+
+
+
+
+		<action name="showProducter" class="showProducter"
+			method="startProducter">
+			<result>/WEB-INF/${installDir}/${linkurl}</result>
+			<result name="error">
+				/WEB-INF/${installDir}/error.jsp
+			</result>
+		</action>
+
+
+		<action name="photoAPI" class="photoAPI" method="ShowPhoto">
+			<result>/WEB-INF/${installDir}/script.jsp</result>
+		</action>
+
+
+		<action name="newsAPI" class="newsAPI" method="startAPI">
+			<result>/WEB-INF/${installDir}/script.jsp</result>
+		</action>
+
+
+		<action name="proAPI" class="proAPI" method="ShowProAPI">
+			<result>/WEB-INF/${installDir}/script.jsp</result>
+		</action>
+
+
+
+
+		<action name="productIntroAPI" class="productIntroAPI"
+			method="showProductAPI">
+			<result>/WEB-INF/${installDir}/script.jsp</result>
+		</action>
+
+        <action name="ShowDefindPage" class="ShowPage" method="ShowUserPage">
+        <result>/WEB-INF/${installDir}/UserDefindPage.jsp</result>
+        </action>
+          
+		<action name="ShowPage" class="ShowPage"
+			method="startShowPage">
+			<result>/WEB-INF/${installDir}/${linkurl}</result>
+
+			<result name="error">
+				/WEB-INF/${installDir}/error.jsp
+			</result>
+		</action>
+
+
+        <action name="debug" class="ShowPage"
+			method="startShowPage">
+			<result>/WEB-INF/${installDir}/${linkurl}</result>
+
+			<result name="error">
+				/WEB-INF/${installDir}/error.jsp
+			</result>
+		</action>
+
+		<!-- 添加评论（需要channelType）-->
+
+		<action name="innitAddComment" class="Comment" method="init">
+			<result>
+				/WEB-INF/common/addComment.jsp?ModuleType=${ModuleType}&amp;infoId=${infoId}<!-- 返回成功的地址 -->
+			</result>
+
+		</action>
+
+
+		<action name="addComment" class="Comment" method="addComment">
+			<result>
+			 /WEB-INF/common/addComment.jsp?ModuleType=${ModuleType}&amp;infoId=${infoId}<!-- 返回成功的地址 -->
+			</result>
+			<result name="input">
+				/WEB-INF/common/addComment.jsp?ModuleType=${ModuleType}&amp;infoId=${infoId}<!-- 返回成功的地址 -->
+			</result>
+
+			<result name="error">
+				/WEB-INF/common/addComment.jsp?ModuleType=${ModuleType}&amp;infoId=${infoId}<!-- 返回错误的地址 -->
+			</result>
+
+		</action>
+		<action name="showComment" class="ShowTempPage"
+			method="startPage">
+			<result>
+				/WEB-INF/common/addComment.jsp?channelId=${channelId}
+			</result>
+		</action>
+		<action name="getSafeCode" class="UserLogin" method="getPNG">
+		</action>
+
+
+
+		<action name="buycar" class="ShowTempPage" method="startPage">
+			<result>/WEB-INF/front/buycart.jsp</result>
+		</action>
+
+		<action name="subCarmit" class="buycarsub" method="toSubmit">
+			<result>/WEB-INF/front/buycarSubmit.jsp</result>
+		</action>
+
+		<action name="ShowAskMe" class="ShowTempPage"
+			method="startPage">
+			<result>/WEB-INF/front/tousu.jsp</result>
+			<result name="error">
+				/WEB-INF/${installDir}/error.jsp
+			</result>
+		</action>
+
+
+		<action name="ShopEx" class="ShowTempPage" method="startPage">
+			<result>/WEB-INF/front/UserShop.jsp</result>
+			<result name="error">
+				/WEB-INF/${installDir}/error.jsp
+			</result>
+		</action>
+
+
+		<action name="yeePayAPI" class="yeePayAPI"
+			method="payAliMoney">
+			<result>/WEB-INF/common/yeePayIsOk.jsp</result>
+		</action>
+		
+		
+				<action name="SubCurcontent" class="ShowPage"
+			method="setCureyNow">
+			<result>/WEB-INF/${installDir}/ShowCurSub.jsp</result>
+		</action>
+        
+       <action name="listServery" class="Servery" method="listShowServery">
+       <result>/WEB-INF/${installDir}/ShowServery.jsp</result>
+       </action>
+       
+       <action name="ShowServery" class="Servery" method="subShowServery">
+       <result>/WEB-INF/${installDir}/ShowServery.jsp</result>
+       </action>
+
+
+
+
+
+
+	</package>
+
+</struts>

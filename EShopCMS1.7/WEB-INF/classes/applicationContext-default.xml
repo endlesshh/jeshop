@@ -1,0 +1,977 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
+
+	<!-- 总体配置管理方案 -->
+
+
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="configLocation"
+			value="classpath:hibernate.cfg.xml">
+		</property>
+	</bean>
+   
+
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+	
+			<tx:method name="*" read-only="false"
+				rollback-for="java.lang.Exception" propagation="REQUIRED"/>
+		</tx:attributes>
+	</tx:advice>
+	<aop:config proxy-target-class="true">
+		<aop:pointcut id="allDaoManage"
+			expression="execution(* com.lxsoft.model.DAO.System..*.*(..))" />
+		<aop:advisor pointcut-ref="allDaoManage"
+			advice-ref="txAdvice"></aop:advisor>
+	</aop:config>
+	
+	
+
+	<bean id="JeUseranswerDAO"
+		class="com.lxsoft.model.DAO.System.JeUseranswerDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="JeMsgDAO" class="com.lxsoft.model.DAO.System.JeMsgDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="JeUserOderDAO"
+		class="com.lxsoft.model.DAO.System.JeUserOderDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+    <bean id="JeUseranswerdetailDAO"
+		class="com.lxsoft.model.DAO.System.JeUseranswerdetailDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+   <bean id="corebasic" class="com.lxsoft.action.system.core.corebasic">
+    <constructor-arg ref="JeConfigDAO"></constructor-arg>
+   </bean>
+   
+
+	<!-- 配置校检 -->
+	<bean id="checkLogin" class="com.lxsoft.tools.CheckUserlogin">
+	</bean>
+	<bean id="AbstractFront" class="com.lxsoft.Support.core.BasicFrontAction"
+		abstract="true">
+		<property name="defindClassdao" ref="JeUserDefineClassDAO"></property>
+		<property name="definddao" ref="JeUserDefineDAO"></property>
+        <property name="jtdao" ref="JeUseranswerdetailDAO"></property>
+		<property name="usergrop" ref="JeUserGroup"></property>
+		<property name="userchannelDao" ref="JeUserChannelDAO"></property>
+		<property name="userclassDao" ref="JeUserClassDAO"></property>
+		<property name="userorderdao" ref="JeUserOderDAO"></property>
+		<property name="userbookdao" ref="JeUserBooKDAO"></property>
+        <property name="dtypedao" ref="SendGoosTypeDAO"></property>
+		<property name="deliverDao" ref="JeDeliverItemDAO"></property>
+		<property name="orderFormDao" ref="JeOrderFormDAO"></property>
+		<property name="softdao" ref="JeSoftDAO"></property>
+		<property name="classTypeDao" ref="JeClasstypeDAO"></property>
+		<property name="jtitleDao" ref="JeClasstitleDAO"></property>
+		<property name="jansdao" ref="JeAnswerDAO"></property>
+		<property name="userDtDao" ref="userDetailDAO"></property>
+		<property name="tradDao" ref="JeTradeMark"></property>
+		<property name="ansDao" ref="JeUseranswerDAO"></property>
+		<property name="jedao" ref="JeMsgDAO"></property>
+
+		<property name="jeconfigdao" ref="JeConfigDAO"></property>
+		<property name="jechanneldao" ref="JeChannelDAO"></property>
+		<property name="jeclassdao" ref="JeClassDAO"></property>
+		<property name="jenewsdao" ref="JeNewsDAO"></property>
+		<property name="jephotodao" ref="JePhotoDAO"></property>
+		<property name="jeproductdao" ref="JeProductDAO"></property>
+		<property name="productdao" ref="JeProductDAO"></property>
+		<property name="jeannouncedao" ref="JeAnnounceDAO"></property>
+		<property name="jeaddao" ref="JeAdDAO"></property>
+		<property name="linkdao" ref="JeLinkDAO"></property>
+		<property name="producerdao" ref="JeProducterDAO"></property>
+		<property name="sliddao" ref="JeSlidDAO"></property>
+		<property name="jecommentdao" ref="JeCommentDAO"></property>
+		<property name="userdao" ref="JeUserDAO"></property>
+		<property name="userInfodao" ref="JeUserInfoDAO"></property>
+		<property name="bankdao" ref="JeBankCardDAO"></property>
+		<property name="pagedao" ref="JePageDAO"></property>
+	</bean>
+	<bean id="coreJob" class="com.lxsoft.action.core.coreJob">
+	<property name="jobdao" ref="JeJoblistDAO"></property>
+	</bean>
+	
+	<bean id="CDoJob" class="com.lxsoft.action.core.cDoJob">
+	<property name="jobdao" ref="JeJoblistDAO"></property>
+	<property name="newsdao" ref="JeNewsDAO"></property>
+	<property name="softdao" ref="JeSoftDAO"></property>
+	<property name="photodao" ref="JePhotoDAO"></property>
+	<property name="productdao" ref="JeProductDAO"></property>
+	<property name="producterdao" ref="JeProducterDAO"></property>
+	<property name="userdao" ref="JeUserDAO"></property>
+	<property name="linkdao" ref="JeLinksDAO"></property>
+	<property name="admindao" ref="JeAdminDao"></property>
+	</bean>
+	
+	
+	<bean id="AbsUserCore" class="com.lxsoft.action.core.userCore">
+
+		<!-- 	public JeUserChannelDAO userchannelDao;
+			public JeUserClassDAO   userclassDao;
+			public JeUserOderDAO userorderdao;
+			public JeUserBooKDAO userbookdao;-->
+
+		<property name="usergrop" ref="JeUserGroup"></property>
+		<property name="userchannelDao" ref="JeUserChannelDAO"></property>
+		<property name="userclassDao" ref="JeUserClassDAO"></property>
+		<property name="userorderdao" ref="JeUserOderDAO"></property>
+		<property name="userbookdao" ref="JeUserBooKDAO"></property>
+		<property name="deliverDao" ref="JeDeliverItemDAO"></property>
+		<property name="orderFormDao" ref="JeOrderFormDAO"></property>
+		<property name="softdao" ref="JeSoftDAO"></property>
+		<property name="classTypeDao" ref="JeClasstypeDAO"></property>
+		<property name="jtitleDao" ref="JeClasstitleDAO"></property>
+		<property name="jansdao" ref="JeAnswerDAO"></property>
+		<property name="userDtDao" ref="userDetailDAO"></property>
+		<property name="tradDao" ref="JeTradeMark"></property>
+		<property name="ansDao" ref="JeUseranswerDAO"></property>
+		<property name="jedao" ref="JeMsgDAO"></property>
+
+		<property name="jeconfigdao" ref="JeConfigDAO"></property>
+		<property name="jechanneldao" ref="JeChannelDAO"></property>
+		<property name="jeclassdao" ref="JeClassDAO"></property>
+		<property name="jenewsdao" ref="JeNewsDAO"></property>
+		<property name="jephotodao" ref="JePhotoDAO"></property>
+		<property name="jeproductdao" ref="JeProductDAO"></property>
+		<property name="productdao" ref="JeProductDAO"></property>
+		<property name="jeannouncedao" ref="JeAnnounceDAO"></property>
+		<property name="jeaddao" ref="JeAdDAO"></property>
+		<property name="linkdao" ref="JeLinkDAO"></property>
+		<property name="producerdao" ref="JeProducterDAO"></property>
+		<property name="sliddao" ref="JeSlidDAO"></property>
+		<property name="jecommentdao" ref="JeCommentDAO"></property>
+		<property name="userdao" ref="JeUserDAO"></property>
+		<property name="userInfodao" ref="JeUserInfoDAO"></property>
+		<property name="bankdao" ref="JeBankCardDAO"></property>
+		<property name="pagedao" ref="JePageDAO"></property>
+		
+
+
+		<property name="styleNamedao" ref="JeStyleNameDAO"></property>
+
+		<property name="configdao" ref="JeUserConfigDAO"></property>
+		
+	</bean>
+	<!-- 生成静态的页面 -->
+	<bean id="adminCreateHtml"
+		class="com.lxsoft.action.admin.adminCreateUrl">
+	</bean>
+	<bean id="adminTemplet" parent="adminBase"
+		class="com.lxsoft.action.admin.adminTemplet">
+	</bean>
+
+
+	<bean id="adminSubClass" parent="adminBase"
+		class="com.lxsoft.action.admin.adminSubClass">
+	</bean>
+
+
+
+	<bean id="adminClassTitle" parent="adminBase"
+		class="com.lxsoft.action.admin.adminClassTitle">
+	</bean>
+	<!--管理员用户操作 -->
+	<bean id="JeAdminDao" class="com.lxsoft.model.DAO.System.JeAdminDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="JeJoblistDAO" class="com.lxsoft.model.DAO.System.JeJoblistDAO">
+	<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="JeLogDAO" class="com.lxsoft.model.DAO.System.JeLogDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	
+	<!-- 用户自定义页面分类管理 -->
+	<bean id="JeUserDefineClassDAO" class="com.lxsoft.model.DAO.System.JeDefineclassDAO">
+	    <property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+    <!-- 用户自定义页面管理 -->
+     <bean id="JeUserDefineDAO" class="com.lxsoft.model.DAO.System.JeUserdefineDAO">
+	<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	
+
+	<bean id="adminUserDefineClass" parent="adminBase" class="com.lxsoft.action.admin.adminDefindClass">	
+	</bean>
+	 <bean id="adminUserDefine" parent="adminBase" class="com.lxsoft.action.admin.adminDefind">	
+	</bean>
+	
+	
+	<bean id="logbean" class="com.lxsoft.logBean">
+		<property name="logdao" ref="JeLogDAO"></property>
+	</bean>
+	<!-- 通知公告 -->
+	<bean id="JeAnnounceDAO"
+		class="com.lxsoft.model.DAO.System.JeAnnounceDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="JeChannelDAO"
+		class="com.lxsoft.model.DAO.System.JeChannelDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="JeCityDAO" class="com.lxsoft.model.DAO.System.JeCityDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="JeClassDAO" class="com.lxsoft.model.DAO.System.JeClassDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="JeCommentDAO"
+		class="com.lxsoft.model.DAO.System.JeCommentDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="JeConfigDAO"
+		class="com.lxsoft.model.DAO.System.JeConfigDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<bean id="JeTempletclassDAO"
+		class="com.lxsoft.model.DAO.System.JeTempletclassDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	
+	
+	<bean id="tempCore" class="com.lxsoft.action.admin.templetCore">
+    	
+    <constructor-arg ref="JeTempletconfigDAO"></constructor-arg>
+    <constructor-arg ref="JeTempletclassDAO"></constructor-arg>
+    <constructor-arg ref="JeConfigDAO"></constructor-arg>
+	</bean>
+
+	<bean id="JeNewsDAO" class="com.lxsoft.model.DAO.System.JeNewsDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="JePhotoDAO" class="com.lxsoft.model.DAO.System.JePhotoDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="JeUserDAO" class="com.lxsoft.model.DAO.System.JeUserDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="JeChanClassDAO"
+		class="com.lxsoft.model.DAO.System.JeChanClassDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="JeProductDAO"
+		class="com.lxsoft.model.DAO.System.JeProductDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="JeProducterDAO"
+		class="com.lxsoft.model.DAO.System.JeProducerDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="JeAdDAO" class="com.lxsoft.model.DAO.System.JeAdDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="JeTradeMark"
+		class="com.lxsoft.model.DAO.System.JeTrademarkDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="JeBookDAO" class="com.lxsoft.model.DAO.System.JeBookDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="JeLinksDAO" class="com.lxsoft.model.DAO.System.JeLinksDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="JeOrderFormDAO"
+		class="com.lxsoft.model.DAO.System.JeOrderFormDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="JeUserFavDAO"
+		class="com.lxsoft.model.DAO.System.JeFavShopDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="JeBuyCar" class="com.lxsoft.model.DAO.System.JeBuyCarDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="JeOrderFormItemDAO"
+		class="com.lxsoft.model.DAO.System.JeOrderFormItemDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="JeLinkDAO" class="com.lxsoft.model.DAO.System.JeLinksDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="JeCard" class="com.lxsoft.model.DAO.System.JeCardDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="JeSoftDAO" class="com.lxsoft.model.DAO.System.JeSoftDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="JeSlidDAO" class="com.lxsoft.model.DAO.System.JeSlidDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="JeUserGroup"
+		class="com.lxsoft.model.DAO.System.JeUserGroupTypeDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="JeUserInfoDAO"
+		class="com.lxsoft.model.DAO.System.JeUserInfoDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="JeUserClassDAO"
+		class="com.lxsoft.model.DAO.System.JeUserClassDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="JeUserChannelDAO"
+		class="com.lxsoft.model.DAO.System.JeUserChannelDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="JePageDAO" class="com.lxsoft.model.DAO.System.JePageDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="JeUnitDAO" class="com.lxsoft.model.DAO.System.JeUnitDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="JeBankCardDAO"
+		class="com.lxsoft.model.DAO.System.JeBankCardDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="JeStyleNameDAO"
+		class="com.lxsoft.model.DAO.System.JeStyleNameDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="JeUserBooKDAO"
+		class="com.lxsoft.model.DAO.System.JeUserBooKDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="JeUserOrderDAO"
+		class="com.lxsoft.model.DAO.System.JeUserOderDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="JeUserConfigDAO"
+		class="com.lxsoft.model.DAO.System.JeUserConfigDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="JeMet" class="com.lxsoft.model.DAO.System.JeMetielDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="userDetailDAO"
+		class="com.lxsoft.model.DAO.System.JeUserDetailDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="SendGoosTypeDAO"
+		class="com.lxsoft.model.DAO.System.JeDeliverTypeDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+
+
+
+
+	<!-- 网站左边导航栏目管理 -->
+	<bean id="ListLeft" class="com.lxsoft.action.admin.ListLeft">
+		<property name="logdao" ref="JeLogDAO"></property>
+		<property name="jechanneldao" ref="JeChannelDAO"></property>
+		<property name="productdao" ref="JeProductDAO"></property>
+		<property name="proucerDao" ref="JeProducterDAO"></property>
+		<property name="orderformdao" ref="JeOrderFormDAO"></property>
+		<property name="jeuserdao" ref="JeUserDAO"></property>
+		<property name="admindao" ref="JeAdminDao"></property>
+		<property name="newsdao" ref="JeNewsDAO"></property>
+		<property name="carddao" ref="JeCard"></property>
+		<property name="jeclassdao" ref="JeClassDAO"></property>
+
+	</bean>
+	<!-- 文章类的bean -->
+	<bean id="newsbean" class="com.lxsoft.bean.News"></bean>
+
+	<!-- 网站配置bean -->
+	<bean id="webconfigbean" class="com.lxsoft.bean.webConfigBean">
+	</bean>
+	<bean id="pagebean" class="com.lxsoft.tools.PageBean"></bean>
+
+	<!-- 用户登陆 用户权限审查 -->
+	<bean id="UserLogin" class="com.lxsoft.action.admin.UserLogin">
+		<property name="jeAdminDAO" ref="JeAdminDao"></property>
+		<property name="lbean" ref="logBean"></property>
+	</bean>
+
+	<!-- 频道管理 -->
+	<bean id="adminChannel" class="com.lxsoft.action.admin.adminChannel"
+		parent="adminBase">
+
+
+	</bean>
+	<!-- 网站配置管理 -->
+	<bean id="webconfig" class="com.lxsoft.action.admin.webConfig"
+		parent="adminBase">
+		<property name="webconfigbean" ref="webconfigbean"></property>
+
+	</bean>
+
+
+	<bean id="adminunit" class="com.lxsoft.action.admin.adminUnit"
+		parent="adminBase">
+
+	</bean>
+	<bean id="JUnit" class="com.lxsoft.model.DAO.System.JeUnitDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+
+	</bean>
+	<bean id="JeDeliverItemDAO"
+		class="com.lxsoft.model.DAO.System.JeDeliverItemDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+
+	</bean>
+	<bean id="JeTempletconfigDAO"
+		class="com.lxsoft.model.DAO.System.JeTempletconfigDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<bean id="JeClasstypeDAO"
+		class="com.lxsoft.model.DAO.System.JeClasstypeDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="JeClasstitleDAO"
+		class="com.lxsoft.model.DAO.System.JeClasstitleDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="JeAnswerDAO"
+		class="com.lxsoft.model.DAO.System.JeAnswerDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<bean id="adminBase" class="com.lxsoft.action.admin.adminBase">
+
+		<property name="jansDao" ref="JeAnswerDAO"></property>
+		<property name="jtitleDao" ref="JeClasstitleDAO"></property>
+		<property name="jetdao" ref="JeClasstypeDAO"></property>
+		<property name="utdao" ref="userDetailDAO"></property>
+		<property name="uindao" ref="JeUserInfoDAO"></property>
+		<property name="orderformDao" ref="JeOrderFormDAO"></property>
+		<property name="usergroupdao" ref="JeUserGroup"></property>
+		<property name="jdao" ref="JeTempletconfigDAO"></property>
+		<property name="tempDao" ref="JeTempletclassDAO"></property>
+		<property name="softdao" ref="JeSoftDAO"></property>
+		<property name="jenewsdao" ref="JeNewsDAO"></property>
+		<property name="bcarddao" ref="JeBankCardDAO"></property>
+		<property name="ddao" ref="JeDeliverItemDAO"></property>
+		<property name="jeorderformdao" ref="JeOrderFormDAO"></property>
+		<property name="buycardao" ref="JeBuyCar"></property>
+		<property name="jeorderitemdao" ref="JeOrderFormItemDAO"></property>
+		<property name="jeproductdao" ref="JeProductDAO"></property>
+		<property name="configdao" ref="JeConfigDAO"></property>
+
+		<property name="jechanclassdao" ref="JeChanClassDAO"></property>
+		<property name="jeconfigdao" ref="JeConfigDAO"></property>
+		<property name="sliddao" ref="JeSlidDAO"></property>
+		<property name="jetypedao" ref="SendGoosTypeDAO"></property>
+		<property name="jeaddao" ref="JeAdDAO"></property>
+		<property name="jelinksdao" ref="JeLinkDAO" />
+		<property name="udao" ref="JUnit"></property>
+		<property name="jecommentdao" ref="JeCommentDAO"></property>
+		<property name="jephotodao" ref="JePhotoDAO" />
+		<property name="tradmarkdao" ref="JeTradeMark"></property>
+		<property name="jeproducerdao" ref="JeProducterDAO"></property>
+		<property name="jeannouncedao" ref="JeAnnounceDAO"></property>
+		<property name="logdao" ref="JeLogDAO"></property>
+		<property name="jechanneldao" ref="JeChannelDAO"></property>
+		<property name="productdao" ref="JeProductDAO"></property>
+		<property name="proucerDao" ref="JeProducterDAO"></property>
+		<property name="orderformdao" ref="JeOrderFormDAO"></property>
+		<property name="jeuserdao" ref="JeUserDAO"></property>
+		<property name="admindao" ref="JeAdminDao"></property>
+		<property name="newsdao" ref="JeNewsDAO"></property>
+		<property name="carddao" ref="JeCard"></property>
+		<property name="jeclassdao" ref="JeClassDAO"></property>
+		<property name="defindClassdao" ref="JeUserDefineClassDAO"></property>
+		<property name="definddao" ref="JeUserDefineDAO"></property>
+	</bean>
+
+	<!-- 网站公告管理 -->
+	<bean id="adminAnnounce"
+		class="com.lxsoft.action.admin.adminAnnounce">
+		<property name="jeannouncedao" ref="JeAnnounceDAO"></property>
+		<property name="logdao" ref="JeLogDAO"></property>
+		<property name="jechanneldao" ref="JeChannelDAO"></property>
+		<property name="productdao" ref="JeProductDAO"></property>
+		<property name="proucerDao" ref="JeProducterDAO"></property>
+		<property name="orderformdao" ref="JeOrderFormDAO"></property>
+		<property name="jeuserdao" ref="JeUserDAO"></property>
+		<property name="admindao" ref="JeAdminDao"></property>
+		<property name="newsdao" ref="JeNewsDAO"></property>
+		<property name="carddao" ref="JeCard"></property>
+		<property name="jeclassdao" ref="JeClassDAO"></property>
+	</bean>
+
+
+	<!-- 网站文章类管理 -->
+	<bean id="adminNews" parent="adminBase"
+		class="com.lxsoft.action.admin.adminNews">
+		<property name="newsbean" ref="newsbean"></property>
+		<property name="jobdao" ref="JeJoblistDAO"></property>
+	</bean>
+	<!-- 网站栏目的管理 -->
+
+	<bean id="adminClass" class="com.lxsoft.action.admin.adminClass"
+		parent="adminBase">
+	</bean>
+
+
+
+	<!-- 图片管理的类别管理 -->
+
+	<bean id="adminPhoto" class="com.lxsoft.action.admin.AdminPhoto">
+		<property name="jeclassdao" ref="JeClassDAO"></property>
+		<property name="jechanneldao" ref="JeChannelDAO"></property>
+		<property name="jephotodao" ref="JePhotoDAO"></property>
+	</bean>
+	<bean id="adminSendGoods" parent="adminBase"
+		class="com.lxsoft.action.admin.adminSendGoods">
+
+	</bean>
+
+	<!-- 上传 -->
+	<bean id="upfile" class="com.lxsoft.tools.MitUploadClass">
+		<constructor-arg ref="JeConfigDAO">
+		</constructor-arg>
+	</bean>
+	<bean id="upfilesingle" class="com.lxsoft.tools.UploadClass">
+		<constructor-arg ref="JeConfigDAO">
+		</constructor-arg>
+	</bean><!-- 单文件上传 -->
+	<bean id="apay" class="com.lxsoft.action.admin.setApay"></bean>
+
+
+	<!-- 商品管理 -->
+
+	<bean id="adminAnser" parent="adminBase"
+		class="com.lxsoft.action.admin.adminAnswer">
+	</bean>
+	<bean id="adminProduct" class="com.lxsoft.action.admin.adminProduct"
+		parent="adminBase">
+    <property name="jobdao" ref="JeJoblistDAO"></property>
+	</bean>
+
+	<bean id="setProduct" class="com.lxsoft.action.admin.adminCore"
+		parent="adminProduct">
+	</bean>
+
+	<!-- 单位管理 -->
+	<bean id="adminUnit" class="com.lxsoft.action.admin.adminUnit">
+		<property name="udao" ref="JeUnitDAO"></property>
+	</bean>
+
+
+	<!--  JeBankCardDAO-->
+	<bean id="adminBankCard" parent="adminBase"
+		class="com.lxsoft.action.admin.adminBankCard">
+
+	</bean>
+
+
+	<!-- 厂商管理 -->
+	<bean id="adminProducter" parent="adminBase"
+		class="com.lxsoft.action.admin.adminProducter">
+	</bean>
+
+	<!-- 广告管理 -->
+
+	<bean id="adminAd" class="com.lxsoft.action.admin.adminAd"
+		parent="adminBase">
+
+	</bean>
+	<!-- 品牌管理 -->
+	<bean id="adminTrademark" parent="adminBase"
+		class="com.lxsoft.action.admin.adminTradeMark">
+
+	</bean>
+
+	<!-- 会员管理 -->
+	<bean id="adminUser" parent="adminBase"
+		class="com.lxsoft.action.admin.adminUser">
+    
+     <property name="userchannelDao" ref="JeUserChannelDAO"></property> 
+     <property name="userclassDao"   ref="JeUserClassDAO"></property> 
+     <property name="userconfigdao"  ref="JeUserConfigDAO"></property> 
+
+	</bean>
+
+	<!-- 会员组管理 -->
+	<bean id="adminUserGroup" parent="adminBase"
+		class="com.lxsoft.action.admin.adminUsergroup">
+
+
+	</bean>
+
+	<!-- 评论管理 -->
+	<bean id="adminComment" parent="adminBase"
+		class="com.lxsoft.action.admin.adminComment">
+	</bean>
+	<!-- 留言管理 -->
+	<bean id="adminBook" class="com.lxsoft.action.admin.adminBook">
+		<property name="jebookdao" ref="JeBookDAO"></property>
+	</bean>
+
+	<!-- 友情链接 -->
+	<bean id="adminLinks" class="com.lxsoft.action.admin.adminLinks"
+		parent="adminBase">
+
+	</bean>
+
+	<!-- 订单管理 -->
+	<bean id="adminOrderForm" parent="adminBase"
+		class="com.lxsoft.action.admin.adminOrderform">
+
+	</bean>
+	<!-- 管理首页 -->
+
+	<bean id="adminMain" class="com.lxsoft.action.admin.adminMain">
+
+		<property name="logdao" ref="JeLogDAO"></property>
+		<property name="jechanneldao" ref="JeChannelDAO"></property>
+		<property name="productdao" ref="JeProductDAO"></property>
+		<property name="proucerDao" ref="JeProducterDAO"></property>
+		<property name="orderformdao" ref="JeOrderFormDAO"></property>
+		<property name="jeuserdao" ref="JeUserDAO"></property>
+		<property name="admindao" ref="JeAdminDao"></property>
+		<property name="newsdao" ref="JeNewsDAO"></property>
+		<property name="carddao" ref="JeCard"></property>
+		<property name="jeclassdao" ref="JeClassDAO"></property>
+	</bean>
+
+	<bean id="adminsoft" class="com.lxsoft.action.admin.adminsoft"
+		parent="adminBase">
+		<property name="jobdao" ref="JeJoblistDAO"></property>
+	</bean>
+
+	<bean id="setAdminpass"
+		class="com.lxsoft.action.admin.setAdminpass">
+		<property name="admindao" ref="JeAdminDao"></property>
+	</bean>
+
+
+	<!-- 会员卡管理选项 -->
+	<bean id="adminCard" class="com.lxsoft.action.admin.admincard"
+		parent="adminBase">
+
+	</bean>
+
+	<bean id="admin" parent="adminBase"
+		class="com.lxsoft.action.admin.adminmana">
+	</bean>
+	<!-- 幻灯管理 -->
+	<bean id="adminSlid" parent="adminBase"
+		class="com.lxsoft.action.admin.adminSlid">
+
+	</bean>
+
+	<bean id="adminStyleName"
+		class="com.lxsoft.action.admin.adminStyleName">
+		<property name="stydao" ref="JeStyleNameDAO"></property>
+		<property name="userdao" ref="JeUserDAO"></property>
+	</bean>
+
+
+	<!-- 前台开始的数据 首页显示 总体数据 -->
+
+	<!-- +++++++++++++++++++++++++++++++++++++++++++++++
+		++  frontManager ++
+		+++++++++++++++++++++++++++++++++++++++++++
+	-->
+
+	<!-- 首页显示 -->
+	<bean id="indexbean" class="com.lxsoft.Client.front.Index"
+		parent="AbstractFront">
+	</bean>
+
+	<!-- 前台文章显示内容 -->
+	<bean id="Article" class="com.lxsoft.Client.front.ShowArticle"
+		parent="AbstractFront">
+	</bean>
+
+	<!-- 前台显示图片内容 -->
+	<bean id="frontPhoto" class="com.lxsoft.Client.front.ShowPhoto"
+		parent="AbstractFront">
+	</bean>
+	<!-- 前台频道首页内容 -->
+	<bean id="frontChannel" class="com.lxsoft.Client.front.ShowChannel"
+		parent="AbstractFront">
+	</bean>
+	<!-- 软件频道 -->
+
+
+	<bean id="frontSoft" class="com.lxsoft.Client.front.ShowSoft"
+		parent="AbstractFront">
+	</bean>
+	<!-- 栏目首页调用 -->
+	<bean id="frontClass" parent="AbstractFront"
+		class="com.lxsoft.Client.front.ShowClass">
+	</bean>
+	<bean id="frontProduct" parent="AbstractFront"
+		class="com.lxsoft.Client.front.ShowProduct">
+	</bean>
+	<!-- 前台的临时页面 -->
+	<bean id="ShowTempPage" parent="AbstractFront"
+		class="com.lxsoft.Client.front.ShowTempPage">
+	</bean>
+
+	<bean id="showProducter" parent="AbstractFront"
+		class="com.lxsoft.Client.front.showProducer">
+	</bean>
+	<bean id="ShowPage" parent="AbstractFront"
+		class="com.lxsoft.Client.front.ShowPage">
+	</bean>
+	<!-- 商品，图片，新闻调用接口 -->
+	<bean id="proAPI" parent="AbstractFront"
+		class="com.lxsoft.Client.front.proAPI">
+	</bean>
+
+	<bean id="photoAPI" parent="AbstractFront"
+		class="com.lxsoft.Client.front.PhotoAPI">
+	</bean>
+
+	<bean id="productIntroAPI" parent="AbstractFront"
+		class="com.lxsoft.Client.front.productAPI">
+	</bean>
+	<bean id="newsAPI" parent="AbstractFront"
+		class="com.lxsoft.Client.front.newsAPI">
+	</bean>
+
+	<bean id="SeachAPI" parent="AbstractFront"
+		class="com.lxsoft.Client.front.NewsSerchAPI">
+	</bean>
+
+	<bean id="SendMail" class="com.lxsoft.Client.front.SendMail"></bean>
+	<bean id="Servery" parent="AbstractFront"
+		class="com.lxsoft.Client.front.ShowServery">
+	</bean>
+
+	<!-- 商品的搜索的API -->
+	<bean id="productAPI" parent="AbstractFront"
+		class="com.lxsoft.Client.front.productSeachAPI">
+		<property name="productdao" ref="JeProductDAO"></property>
+	</bean>
+
+
+	<!-- 评论管理添加方面 -->
+	<bean id="Comment" parent="AbstractFront"
+		class="com.lxsoft.Client.front.SubComment">
+
+	</bean>
+
+
+	<!-- 用户管理 -->
+
+	<bean id="userFav" class="com.lxsoft.action.user.userFavShop">
+		<property name="productdao" ref="JeProductDAO"></property>
+		<property name="favdao" ref="JeUserFavDAO"></property>
+		<property name="userdao" ref="JeUserDAO"></property>
+	</bean>
+
+	<bean id="userBuyCar" class="com.lxsoft.action.user.userBuyCar">
+		<property name="productdao" ref="JeProductDAO"></property>
+		<property name="favdao" ref="JeUserFavDAO"></property>
+		<property name="userdao" ref="JeUserDAO"></property>
+		<property name="buycardao" ref="JeBuyCar"></property>
+	</bean>
+
+	<bean id="frontOrder"
+		class="com.lxsoft.action.admin.adminOrderform">
+		<property name="jeorderformdao" ref="JeOrderFormDAO"></property>
+		<property name="jeorderitemdao" ref="JeOrderFormItemDAO"></property>
+		<property name="buycardao" ref="JeBuyCar"></property>
+	</bean>
+
+	<bean id="usercard" class="com.lxsoft.action.user.usercard">
+		<property name="carddao" ref="JeCard"></property>
+		<property name="userdao" ref="JeUserDAO"></property>
+	</bean>
+	<!-- 取得用户权限 -->
+	<bean id="userLeft" parent="AbsUserCore"
+		class="com.lxsoft.action.user.userLeft">
+
+	</bean>
+	<!-- 用户添加新闻或者视频 -->
+	<bean id="userNews" class="com.lxsoft.action.user.userNews">
+		<property name="newsbean" ref="newsbean"></property>
+		<property name="jenewsdao" ref="JeNewsDAO"></property>
+		<property name="jechanneldao" ref="JeChannelDAO"></property>
+		<property name="jeclassdao" ref="JeClassDAO"></property>
+		<property name="jdao" ref="JeTempletconfigDAO"></property>
+		<property name="tempDao" ref="JeTempletclassDAO"></property>
+	</bean>
+	<!-- 用来包装订单条目 -->
+	<bean id="item" class="com.lxsoft.bean.Item"></bean>
+
+	<!-- 用户订单查询-->
+	<bean id="userOrder" class="com.lxsoft.action.user.UserOrder">
+		<property name="orderDao" ref="JeOrderFormDAO"></property>
+		<property name="itemDao" ref="JeOrderFormItemDAO"></property>
+		<property name="productDao" ref="JeProductDAO"></property>
+	</bean>
+	<!-- 用户信息修改 -->
+	<bean id="modUser" parent="AbsUserCore" class="com.lxsoft.action.user.modUser">
+		
+	</bean>
+
+	<bean name="userMetel" class="com.lxsoft.action.user.userMetel">
+		<property name="medao" ref="JeMet"></property>
+	</bean>
+	<bean name="yeePayAPI" class="com.lxsoft.tools.payMoney"></bean>
+
+	<!-- 用户模板显示 用户自助建站系统 自助开店 -->
+	<bean parent="AbstractFront" id="userStyle"
+		class="com.lxsoft.Client.style.userIndex">
+
+	</bean>
+	<bean name="indexFrontJson"
+		class="com.lxsoft.Client.front.frontJsonIndex">
+	</bean>
+	<bean name="frontJsonProductPhoto"
+		class="com.lxsoft.Client.front.frontJsonProductPhoto">
+	</bean>
+	<bean name="StyleFile"
+		class="com.lxsoft.action.admin.adminStyleFile">
+	</bean>
+	<bean name="JeUserDetail"
+		parent="AbsUserCore"  class="com.lxsoft.action.user.UserDetail">
+	</bean>
+	
+	
+	<bean name="muban" class="com.lxsoft.action.admin.userFile"></bean>
+	<bean name="logBean" parent="adminBase"
+		class="com.lxsoft.logBean">
+	</bean>
+
+
+
+	<bean parent="AbstractFront" name="buycarsub"
+		class="com.lxsoft.Client.front.submitBuyCar">
+	</bean>
+	
+	
+	<bean name="managerMsg"
+	 parent="AbstractFront"	class="com.lxsoft.action.common.managerMsg">
+	</bean>
+	<bean parent="AbstractFront" name="manaderComUser"
+		class="com.lxsoft.action.common.ComonUser">
+	</bean>
+	<import resource="lxsoft-plug.xml" />
+	<import resource="JsonBean.xml" />
+</beans>

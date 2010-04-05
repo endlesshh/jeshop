@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+
+   <!-- 系统插件配置
+   
+   使用方法：将插件配置文件采用接入的方式插入 将配置jar包放入lib目录下
+   模板文件放入相应的地方即可
+    -->
+	</beans>
+	

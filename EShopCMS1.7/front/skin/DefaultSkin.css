@@ -1,0 +1,174 @@
+@charset "utf-8";
+/* CSS Document */
+
+#popup_container {
+	font-family: Arial, sans-serif;
+	font-size: 12px;
+	min-width: 300px; /* Dialog will be no smaller than this */
+	max-width: 600px; /* Dialog will wrap after this width */
+	background: #FFF;
+	border: solid 5px #999;
+	color: #000;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+}
+ul{ left:2px;}
+#popup_title {
+	font-size: 14px;
+	font-weight: bold;
+	text-align: center;
+	line-height: 1.75em;
+	color: #666;
+	background: #CCC url(images/title.gif) top repeat-x;
+	border: solid 1px #FFF;
+	border-bottom: solid 1px #999;
+	cursor: default;
+	padding: 0em;
+	margin: 0em;
+}
+
+#popup_content {
+	background: 16px 16px no-repeat url(images/info.gif);
+	padding: 1em 1.75em;
+	margin: 0em;
+}
+
+#popup_content.alert {
+	background-image: url(images/info.gif);
+}
+
+#popup_content.confirm {
+	background-image: url(images/important.gif);
+}
+
+#popup_content.prompt {
+	background-image: url(images/help.gif);
+}
+
+#popup_message {
+	padding-left: 48px;
+}
+
+#popup_panel {
+	text-align: center;
+	margin: 1em 0em 0em 1em;
+}
+
+#popup_prompt {
+	margin: .5em 0em;
+}
+
+
+.bigbord{ border:1px #009933 outset;}
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	font-size:12px;
+}
+body,td,th {
+	font-size: 12px;
+}
+a {
+	font-size: 12px;
+	color: #333333;
+	text-decoration: none;
+}
+a:visited {
+	color: #333333;
+}
+a:hover {
+	color: #333333;
+}
+a:active {
+	color: #333333;
+}
+.tdContent
+{
+}
+
+
+/*头部四个按钮的背景*/
+.top_button{
+background-image:url(../images/button_top.jpg);
+height:46px;
+width:108px;
+text-align:center;
+vertical-align:middle;
+color:#FFFFFF;}
+
+/*选项卡按钮*/
+.tableChannelSelect
+{
+height:23px;
+width:75px;
+text-align:center;
+vertical-align:middle;
+
+border-left:1px  #006633 outset;
+border-right:1px  #006633 outset;
+background-image:url(../images/channelBF.jpg);
+cursor:hand;
+
+}
+.tableChannelSelecton
+{
+height:23px;
+width:75px;
+text-align:center;
+vertical-align:middle;
+
+border-left:1px  #006633 outset;
+border-right:1px  #006633 outset;
+background-image:url(../images/channelBFon.jpg);
+cursor:hand;
+
+}
+
+/*头部顶部导航位置*/
+.top_channel
+{
+background-image:url(../images/channel_03.jpg);
+height:52px;
+text-align:center;
+vertical-align:middle;
+color:#FFFFFF;
+}
+.contentpagelist{ width:25px; height:25px; margin-left:3px; padding-top:3px; text-align:center;
+border-bottom:1px #CCCCCC outset;
+border-right:1px #CCCCCC outset;
+cursor:hand;
+background-image:url(../images/buttonYellow.jpg);}
+.index_midle_table_bg
+{
+height:25px;
+background-image:url(../images/channaelBg.jpg);
+color:#FFFFFF;
+border:1px #009933 outset;
+padding-top:3px;}
+.contain_table{ text-align:left; vertical-align:top;}
+.contain_tablediv{text-align:left; vertical-align:top; padding:4px;}
+.ShowChannelCss{ font-size:14px; color:#FFFFFF;}
+.index_new_productListIndex{ height:23px;
+list-style-type:none;}
+.index_new_userListIndex{ height:23px;
+list-style-type:none;}
+
+.product_buy_getin{
+float:left;
+width:32px; height:29px; background-image:url(../images/buttonYellow.jpg); text-align:center; vertical-align:middle;}
+.productPic
+{
+border:1px #CCCCCC outset;
+padding:3px;}
+ul{ padding-top:5px;}
+li{ list-style:none;
+height:20px;}
+
+
+
+
+
+

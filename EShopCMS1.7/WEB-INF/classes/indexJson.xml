@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+<package name="Indexjson" namespace="/front"
+		extends="json-default">
+		
+		
+		<!-- 返回所有会员 -->
+		<action name="listUserJson" class="indexFrontJson" method="getIndexUser">
+		<result type="json">
+	    </result>
+		</action>
+		
+		<!-- 
+		返回所有图片
+		 -->
+		
+		<action name="ListAllPhotoIndex" class="frontJsonProductPhoto" method="getProductJsonPhoto">
+		<result type="json">
+	    </result>
+		</action>
+
+	</package>
+
+</struts>

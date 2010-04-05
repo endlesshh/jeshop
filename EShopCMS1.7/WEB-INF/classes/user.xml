@@ -1,0 +1,868 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+
+
+	<!-- 检测用户登陆 -->
+	<!-- 用户登陆 -->
+
+
+
+	<package name="user" namespace="/user" extends="struts-default">
+
+
+		<interceptors>
+			<interceptor name="myInterceptor"
+				class="com.lxsoft.tools.CheckUserRegister" />
+			<interceptor-stack name="myStacks">
+				<interceptor-ref name="myInterceptor" />
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="myStacks" />
+
+		<global-results>
+			<result name="regeUser">/WEB-INF/user/userLogin.jsp</result>
+		</global-results>
+
+
+        
+
+		<action name="addFav" class="userFav" method="addFav">
+			<result type="redirect">
+				/user/ListFav.jspx?user.userId=${user.userId}
+			</result>
+			<result name="chongfu">/WEB-INF/user/ListFav.jsp</result>
+		</action>
+		<action name="ListFav" class="userFav" method="listFavByUser">
+			<result>
+				/WEB-INF/user/ListFav.jsp?user.userId=${user.userId}
+			</result>
+			<result name="chongfu">
+				/WEB-INF/user/ListFav.jsp?user.userId=${user.userId}
+			</result>
+		</action>
+		<action name="deleFav" class="userFav" method="deleFav">
+			<result>
+				/WEB-INF/user/ListFav.jsp?user.userId=${user.userId}
+			</result>
+			<result name="chongfu">
+				/WEB-INF/user/ListFav.jsp?user.userId=${user.userId}
+			</result>
+		</action>
+
+
+		<!-- 加入到购物车中 -->
+		<action name="addBuyCar" class="userBuyCar"
+			method="addBuyCar">
+			<result type="redirect">
+				/WEB-INF/user/ListBuyCar.jspx?user.userId=${user.userId}
+			</result>
+		</action>
+		<action name="ListBuyCar" class="userBuyCar"
+			method="ListBuyCar">
+			<result>
+				/WEB-INF/user/ListBuyCar.jsp?user.userId=${user.userId}
+			</result>
+		</action>
+
+		<action name="deleBuyCar" class="userBuyCar"
+			method="deleBuyCar">
+			<result>
+				/WEB-INF/user/ListBuyCar.jsp?user.userId=${user.userId}
+			</result>
+		</action>
+		<action name="updateProNum" class="userBuyCar"
+			method="updateProNum">
+			<result>
+				/WEB-INF/user/ListBuyCar.jsp?user.userId=${user.userId}
+			</result>
+		</action>
+
+		<!-- 用户结账 -->
+		<action name="Acount" class="userBuyCar" method="Acount">
+			<result>
+				<!-- 确认账单正确 -->
+				/WEB-INF/user/Orderform.jsp?user.userId=${user.userId}
+			</result>
+
+			<!-- 返回购物车 -->
+			<result name="fanhui" type="redirect">
+				/WEB-INF/user/ListBuyCar.jspx?user.userId=${user.userId}
+			</result>
+
+		</action>
+
+		<!-- 会员下订单 -->
+
+		<action name="subAcount" class="adminOrderForm"
+			method="addOrder">
+			<result>
+				<!-- 确认账单正确 -->
+				/WEB-INF/user/OrderResult.jsp?OrderNum=${ocode}
+			</result>
+			<result name="input" type="redirect">
+				/WEB-INF/user/ListBuyCar.jspx?user.userId=${user.userId}
+			</result>
+		</action>
+
+		<action name="subAcountFront" class="adminOrderForm"
+			method="addOrderFront">
+			<result>
+				<!-- 确认账单正确 -->
+				/WEB-INF/user/OrderResult.jsp?OrderNum=${ocode}
+			</result>
+			<result name="input" type="redirect">
+				/user/ListBuyCar.jspx?user.userId=${user.userId}
+			</result>
+		</action>
+
+
+
+		<!-- 钱数转化 -->
+		<action name="MoneyToPoint" class="usercard" method="MTP">
+			<result>/WEB-INF/user/sonsum.jsp</result>
+		</action>
+		<!-- 会员用户注册 -->
+
+		<action name="upDatePassword" class="adminUser"
+			method="setPassword">
+			<result>
+				/WEB-INF/user/setPassword.jsp?msg=${ErrorMsg}
+			</result>
+		</action>
+
+		<action name="inMoney" class="usercard" method="checkCode">
+			<result>
+				/WEB-INF/user/addSonsum.jsp?ErrorMsg=${errMsg}
+			</result>
+		</action>
+		<action name="userLeft" class="userLeft" method="userleft">
+			<result>/WEB-INF/user/left.jsp</result>
+		</action>
+		<action name="userMain" class="userLeft" method="userMain">
+			<result>/WEB-INF/user/Main.jsp</result>
+		</action>
+
+
+		<action name="modMyMsg" class="modUser" method="modeUser">
+			<result>/WEB-INF/user/modeMsg.jsp</result>
+			<result name="input">/WEB-INF/user/Main.jsp</result>
+		</action>
+
+
+
+		<!-- 用户新闻添加 -->
+		<action name="addListNews" class="userNews"
+			method="ListClass">
+			<result>
+				/WEB-INF/user/addNews.jsp?channelID=${channelID}
+			</result>
+			<result name="error">/WEB-INF/user/error.jsp</result>
+		</action>
+
+		<action name="modNews" class="userNews" method="modNews">
+			<result>
+
+				/WEB-INF/user/ListNews.jsp?channelID=${channelID}
+			</result>
+			<result name="error">
+				/WEB-INF/user/error.jsp?channelID=${channelID}
+			</result>
+		</action>
+
+
+		<action name="addNews" class="userNews" method="addNews">
+			<result>
+				/WEB-INF/user/addNews.jsp?channelID=${channelID}
+			</result>
+			<result name="error">/WEB-INF/user/error.jsp</result>
+		</action>
+
+		<action name="ListNews" class="userNews" method="ListNews">
+			<result>
+				/WEB-INF/user/ListNews.jsp?channelID=${channelID}
+			</result>
+			<result name="error">
+				/WEB-INF/user/error.jsp?channelID=${channelID}
+			</result>
+		</action>
+
+		<action name="findNews" class="userNews" method="findNews">
+			<result>/WEB-INF/user/modNews.jsp</result>
+			<result name="error">
+				/WEB-INF/user/error.jsp?channelID=${channelID}
+			</result>
+		</action>
+
+
+		<action name="deleNews" class="userNews" method="deleNews">
+			<result type="redirect">
+				/WEB-INF/user/ListNews.jspx?channelID=${channelID}&amp;userId=${userId}
+			</result>
+			<result name="error">
+				/WEB-INF/user/error.jsp?channelID=${channelID}&amp;userId=${userId}
+			</result>
+		</action>
+
+
+
+		<!-- 关于会员可以添加商品 -->
+
+
+		<action name="initAddProduct" class="adminProduct"
+			method="initAddProduct">
+			<result>
+				/WEB-INF/user/addProduct.jsp?channelId=${channelId}&amp;userId=${userId}
+
+			</result>
+			<result name="input">/WEB-INF/user/error.jsp</result>
+		</action>
+
+		<!-- 添加商品 -->
+
+		<action name="addProduct" class="adminProduct"
+			method="addProduct">
+			<result>
+				/WEB-INF/user/ListProduct.jsp?channelId=${channelId}&amp;userId=${userId}
+			</result>
+
+		</action>
+
+		<action name="ListProduct" class="adminProduct"
+			method="listByUserPro">
+			<result>
+				/WEB-INF/user/ListProduct.jsp?channelId=${channelId}&amp;userId=${userId}
+			</result>
+			<result name="error">
+				/WEB-INF/user/ListProduct.jsp?channelId=${channelId}&amp;userId=${userId}
+			</result>
+		</action>
+
+
+		<!-- 删除商品 -->
+		<action name="deleProduct" class="adminProduct"
+			method="deleProduct">
+			<result>
+				/WEB-INF/user/ListProduct.jsp?channelId=${channelId}&amp;userId=${userId}
+			</result>
+			<result name="input">
+				/WEB-INF/user/ListProduct.jsp?channelId=${channelId}&amp;userId=${userId}
+			</result>
+
+		</action>
+
+
+		<!-- 修改商品 -->
+
+		<action name="initMod" class="adminProduct" method="initMod">
+			<result>
+				/WEB-INF/user/modProduct.jsp?channelId=${channelId}
+			</result>
+			<result name="input">/WEB-INF/user/error.jsp</result>
+		</action>
+
+		<action name="updateProduct" class="adminProduct"
+			method="ModProduct">
+			<result>
+				/WEB-INF/user/ListProduct.jsp?channelId=${channelId}&amp;userId=${userId}
+			</result>
+			<result name="error">
+				/WEB-INF/user/ListProduct.jsp?channelId=${channelId}&amp;userId=${userId}
+			</result>
+		</action>
+
+		<!-- 添加商品图片 -->
+		<action name="addproPhoto" class="adminProduct"
+			method="addproPhoto">
+			<result>
+				/WEB-INF/user/addproPhoto.jsp?channelId=${channelId}
+			</result>
+		</action>
+
+		<action name="addPhoto" class="adminPhoto" method="addPhoto">
+			<result name="input" type="redirect">
+				/WEB-INF/user/photoIndex.jspx?channelId=${channelId}
+			</result>
+			<result type="redirect">
+				/WEB-INF/user/adminPhoto.jspx?channelId=${channelId}
+			</result>
+		</action>
+
+
+		<action name="photoIndex" class="adminPhoto"
+			method="photoIndex">
+			<result>/user/addPhoto.jsp?channelId=${channelId}</result>
+			<result name="ERROR">
+				/WEB-INF/user/error.jsp?channelId=${channelId}
+			</result>
+		</action>
+
+		<action name="modIndex" class="adminPhoto"
+			method="photoIndexadmin">
+			<result>
+				/WEB-INF/user/modPhoto.jsp?channelId=${channelId}
+			</result>
+		</action>
+
+
+		<!-- 添加图片 -->
+		<action name="addPhoto" class="adminPhoto" method="addPhoto">
+			<result name="input" type="redirect">
+				/WEB-INF/user/photoIndex.jspx?channelId=${channelId}
+			</result>
+			<result type="redirect">
+				/WEB-INF/user/adminPhoto.jspx?channelId=${channelId}
+			</result>
+		</action>
+
+
+		<!-- 修改图片 -->
+		<action name="modPhoto" class="adminPhoto" method="modPhoto">
+			<result type="redirect">
+				/WEB-INF/user/adminPhoto.jspx?channelId=${channelId}
+			</result>
+		</action>
+
+
+		<!-- 图片管理首页 -->
+		<action name="adminPhoto" class="adminPhoto"
+			method="photoIndex">
+			<result>
+				/WEB-INF/user/adminPhoto.jsp?channelId=${channelId}
+			</result>
+		</action>
+		<!-- 删除指定图片 -->
+		<action name="delePhoto" class="adminPhoto"
+			method="delePhoto">
+			<result name="success" type="redirect">
+				/WEB-INF/user/adminPhoto.jspx?channelId=${channelId}
+			</result>
+			<result name="error" type="redirect">
+				/WEB-INF/user/error.jsp?channelId=${channelId}
+			</result>
+			<result name="input" type="redirect">
+				/WEB-INF/user/adminPhoto.jspx?channelId=${channelId}
+			</result>
+		</action>
+
+
+
+
+
+
+		<!-- 会员添加商品的结束 -->
+
+
+
+
+
+		<action name="upfile" class="upfile">
+			<result>/WEB-INF/user/upfile.jsp?classId=${classId}</result>
+		</action>
+
+		<action name="upfilesingle" class="upfilesingle">
+			<result>
+				/WEB-INF/user/upfilesingle.jsp?classId=${classId}
+			</result>
+		</action>
+		<action name="upfilevideo" class="upfilesingle">
+			<result>
+				/WEB-INF/user/upfilevideo.jsp?classId=${classId}
+			</result>
+		</action>
+
+		<action name="uptofile" class="upfilesingle"
+			method="executeSlipleFile">
+		</action>
+
+
+
+		<!-- 用户订单查看 -->
+
+		<action name="lookUpOrderForm" class="userOrder"
+			method="listOrderByUser">
+			<result>/WEB-INF/user/lookUpOrderForm.jsp</result>
+		</action>
+		<action name="lookUpItem" class="userOrder" method="listItem">
+			<result>/WEB-INF/user/lookUpOrderForm.jsp</result>
+		</action>
+
+
+		<!-- 会员信息 -->
+
+
+		<action name="listuserchan" class="modUser"
+			method="listChanClass">
+			<result>/WEB-INF/user/setUserClass.jsp</result>
+
+		</action>
+		<!-- 罗列用户商品分类 -->
+		<action name="setUserchan" class="modUser"
+			method="setUserchan">
+			<result>/WEB-INF/user/setUserClass.jsp</result>
+		</action>
+
+		<action name="addUserChan" class="modUser"
+			method="addUserChan">
+			<result>/WEB-INF/user/setUserClass.jsp</result>
+
+		</action>
+
+		<action name="deleChan" class="modUser" method="deleChan">
+			<result>/WEB-INF/user/setUserClass.jsp</result>
+
+		</action>
+
+
+		<!-- 罗列 -->
+		<action name="listPage" class="modUser" method="listPage">
+			<result>/WEB-INF/user/setUserPage.jsp</result>
+		</action>
+
+		<action name="addUserPage" class="modUser"
+			method="addUserPage">
+			<result type="redirect">
+			/user/listPage.jspx
+			</result>
+		</action>
+
+		<action name="addinitUserPage" class="modUser"
+			method="listPage">
+			<result>/WEB-INF/user/addUserPage.jsp</result>
+		</action>
+
+		<action name="modPage" class="modUser" method="listPage">
+			<result>
+				/WEB-INF/user/modUserPage.jsp?pageId=${pageId}
+			</result>
+		</action>
+
+		<action name="updateUserPage" class="modUser"
+			method="modUserPage">
+			<result type="redirect">
+			/user/listPage.jspx
+			</result>
+		</action>
+
+		<action name="delePage" class="modUser" method="delePage">
+			<result type="redirect">
+				/user/listPage.jspx
+			</result>
+		</action>
+
+		<!-- 用户选择模版 -->
+
+		<action name="getStyleName" class="modUser"
+			method="userClass">
+			<result>/WEB-INF/user/listStyleName.jsp</result>
+		</action>
+
+		<!-- 设置模板 -->
+		<action name="setStyleName" class="modUser"
+			method="setStyleNamelist">
+			<result>/WEB-INF/user/listStyleName.jsp</result>
+		</action>
+
+
+		<!-- 发布公告 -->
+		<action name="setAnounce" class="modUser" method="setAnounce">
+			<result>/WEB-INF/user/setAnounce.jsp</result>
+		</action>
+
+		<action name="initAnnounce" class="modUser"
+			method="listChanClass">
+			<result>/WEB-INF/user/setAnounce.jsp</result>
+		</action>
+
+
+
+
+		<!-- 联系我们信息 -->
+		<action name="setLinkUs" class="modUser"
+			method="setuserLinkUs">
+			<result>/WEB-INF/user/setLinkUs.jsp</result>
+		</action>
+		<action name="initLinkUs" class="modUser"
+			method="listChanClass">
+			<result>/WEB-INF/user/setLinkUs.jsp</result>
+		</action>
+
+		<!-- 网站简介 -->
+		<action name="setJianjieUs" class="modUser"
+			method="JianjieUs">
+			<result>/WEB-INF/user/setJianjie.jsp</result>
+		</action>
+		<action name="initJianjieUs" class="modUser"
+			method="listChanClass">
+			<result>/WEB-INF/user/setJianjie.jsp</result>
+		</action>
+
+
+		<!-- 送货方式说明 -->
+		<action name="setsongHuo" class="modUser" method="setsongHuo">
+			<result>/WEB-INF/user/setsongHuo.jsp</result>
+		</action>
+		<action name="initsetsongHuo" class="modUser"
+			method="listChanClass">
+			<result>/WEB-INF/user/setsongHuo.jsp</result>
+		</action>
+
+
+		<action name="shouHouUs" class="modUser" method="ShouHouUs">
+			<result>/WEB-INF/user/setShouHou.jsp</result>
+		</action>
+		<action name="initshouHouUs" class="modUser"
+			method="listChanClass">
+			<result>/WEB-INF/user/setShouHou.jsp</result>
+		</action>
+		<!--售后服务 -->
+
+
+		<!-- 付款说明 -->
+		<action name="ShowMoney" class="modUser" method="ShowMoney">
+			<result>/WEB-INF/user/showMoney.jsp</result>
+		</action>
+		<action name="initShowMoney" class="modUser"
+			method="listChanClass">
+			<result>/WEB-INF/user/showMoney.jsp</result>
+		</action>
+
+		<!-- 商品分类 -->
+
+
+
+
+
+		<!-- 显示首页左栏定制内容 -->
+
+		<action name="SetindexLeft" class="modUser"
+			method="ShowIndexLeft">
+			<result>/WEB-INF/user/setIndexKeFu.jsp</result>
+		</action>
+		<action name="initindexLeft" class="modUser"
+			method="listChanClass">
+			<result>/WEB-INF/user/setIndexKeFu.jsp</result>
+		</action>
+
+		<action name="SetindexTop" class="modUser"
+			method="ShowIndexTop">
+			<result>/WEB-INF/user/setIndexTop.jsp</result>
+		</action>
+		<action name="initindexTop" class="modUser"
+			method="listChanClass">
+			<result>/WEB-INF/user/setIndexTop.jsp</result>
+		</action>
+
+
+
+
+		<!-- 首页左栏内容完成 -->
+
+
+		<!-- 网站标志上传管理 -->
+
+		<action name="SetindexLogo" class="modUser"
+			method="ShowIndexLogo">
+			<result>/WEB-INF/user/setupLogo.jsp</result>
+		</action>
+		<action name="initindexLogo" class="modUser"
+			method="listChanClass">
+			<result>/WEB-INF/user/setupLogo.jsp</result>
+		</action>
+
+		<!-- 标志管理完成 -->
+
+
+
+		<!-- 网站标志上传管理 -->
+
+		<action name="SetindexBanner" class="modUser"
+			method="ShowIndexBanner">
+			<result>/WEB-INF/user/setupLogo.jsp</result>
+		</action>
+		<action name="initindexBanner" class="modUser"
+			method="listChanClass">
+			<result>/WEB-INF/user/setupLogo.jsp</result>
+		</action>
+
+		<!-- 网站素材管理 -->
+
+		<action name="SetSucai" class="userMetel"
+			method="addNewMetel">
+			<result>/WEB-INF/user/setSucai.jsp</result>
+		</action>
+		<action name="delSucai" class="userMetel" method="DelMetel">
+			<result>/WEB-INF/user/setSucai.jsp</result>
+		</action>
+		<action name="initSucai" class="userMetel" method="initStart">
+			<result>/WEB-INF/user/setSucai.jsp</result>
+		</action>
+
+
+		<!-- 标志管理完成 -->
+
+		<action name="SetindexMain" class="modUser"
+			method="setwebMainMap">
+			<result>/WEB-INF/user/setIndexMain.jsp</result>
+		</action>
+		<action name="initindexMain" class="modUser"
+			method="listChanClass">
+			<result>/WEB-INF/user/setIndexMain.jsp</result>
+		</action>
+
+
+
+
+
+
+		<action name="listUserClass" class="modUser"
+			method="initListUserClass">
+			<result>/WEB-INF/user/setProclass.jsp</result>
+		</action>
+
+		<!-- 添加自定义栏目 -->
+		<action name="addUserClass" class="modUser"
+			method="addUserProClass">
+			<result>/WEB-INF/user/setProclass.jsp</result>
+		</action>
+
+
+		<!-- 添加自定义栏目 -->
+		<action name="moduserclass" class="modUser"
+			method="modUserProClass">
+			<result>/WEB-INF/user/setProclass.jsp</result>
+		</action>
+
+		<action name="deleUserClass" class="modUser"
+			method="deleUserClass">
+			<result>/WEB-INF/user/setProclass.jsp</result>
+		</action>
+
+		<action name="ShowUserInfoMsg" class="modUser"
+			method="listChanClass">
+			<result>/WEB-INF/user/showUserInfoMsg.jsp</result>
+		</action>
+
+
+
+
+		<!-- 用户留言类管理方式 -->
+
+		<action name="listUserBook" class="modUser"
+			method="listChanClass">
+			<result>/WEB-INF/user/listUserBook.jsp</result>
+		</action>
+		<action name="initreUserBook" class="modUser"
+			method="listChanClass">
+			<result>/WEB-INF/user/reUserBook.jsp</result>
+		</action>
+		<action name="reUserBook" class="modUser"
+			method="modUserBook">
+			<result>/WEB-INF/user/listUserBook.jsp</result>
+		</action>
+		<action name="DeleUserBook" class="modUser"
+			method="deleUserBook">
+			<result>/WEB-INF/user/listUserBook.jsp</result>
+		</action>
+
+
+		<action name="listUserOrder" class="modUser"
+			method="listChanClass">
+			<result>/WEB-INF/user/ListuserOrder.jsp</result>
+		</action>
+
+		<!-- 初始化网站 -->
+		<action name="initSetup" class="modUser"
+			method="listChanClass">
+			<result>/WEB-INF/user/setup.jsp</result>
+
+		</action>
+		<action name="SetupWeb" class="modUser" method="saveWeb">
+			<result>/WEB-INF/user/setup.jsp</result>
+		</action>
+
+		<action name="initchannel" class="modUser" method="SetupWeb">
+			<result>/WEB-INF/user/setUserClass.jsp</result>
+		</action>
+
+
+		<action name="readUserOrder" class="modUser"
+			method="readUserOrder">
+			<result>/WEB-INF/user/ListuserOrder.jsp</result>
+		</action>
+		<action name="deleUserOrder" class="modUser"
+			method="deleUserOrder">
+			<result>/WEB-INF/user/ListuserOrder.jsp</result>
+		</action>
+
+		<action name="sendUserOrder" class="modUser"
+			method="SendUserOrder">
+			<result>/WEB-INF/user/ListuserOrder.jsp</result>
+		</action>
+
+
+		<!-- 用户详细信息管理 -->
+
+
+		<action name="UpdateUserDetail" class="JeUserDetail"
+			method="AddUserDetail">
+			<result>/WEB-INF/user/userDetail.jsp</result>
+		</action>
+
+		<action name="FindUserDetail" class="JeUserDetail"
+			method="initUserDetail">
+			<result>/WEB-INF/user/userDetail.jsp</result>
+		</action>
+
+
+	</package>
+
+	<package name="userreg" namespace="/user"
+		extends="struts-default">
+
+		<action name="index" class="adminUser" method="showInex">
+			<!-- 成功跳转 -->
+			<result>/WEB-INF/user/userLogin.jsp</result>
+		</action>
+
+         <action name="CheckUserExistAjax" class="manaderComUser" method="CheckUserExist">
+        <result>
+        /WEB-INF/common/CheckIsUserExist.jsp
+        </result>
+        </action>
+
+		<action name="regeUser" class="adminUser" method="regedit">
+			<!-- 成功跳转 -->
+			<result>
+				/WEB-INF/user/regeUser.jsp?errorMsg='用户注册成功！请您重新登录后激活您的账户'
+			</result>
+			<result name="mapSuccess">
+				/WEB-INF/user/${mapSuccess}
+			</result>
+			<!-- 跳转到输入页面 -->
+			<result name="input">
+				/WEB-INF/user/regeUser.jsp?errorMsg='用户名已经存在 请更换用户名称'
+			</result>
+		</action>
+
+
+
+		<action name="lookuporder" class="adminUser"
+			method="ShowOrder">
+			<!-- 成功跳转 -->
+
+			<result>/WEB-INF/user/findMyOrder.jsp</result>
+			<!-- 跳转到输入页面 -->
+		</action>
+
+		<action name="userManer">
+			<!-- 成功跳转 -->
+
+			<result>/WEB-INF/user/userManager.jsp</result>
+			<!-- 跳转到输入页面 -->
+		</action>
+
+
+		<action name="FindPass" class="adminUser" method="resetPass">
+			<!-- 成功跳转 -->
+
+			<result>/WEB-INF/user/FindPass.jsp</result>
+			<!-- 跳转到输入页面 -->
+		</action>
+
+		<!-- 用户登录 -->
+		<action name="userviplogin" class="adminUser"
+			method="isUserExist">
+			<!-- 成功跳转 -->
+			<result name="input">/WEB-INF/user/userLogin.jsp</result>
+			<result>/WEB-INF/user/userManager.jsp</result>
+		</action>
+		<!-- 用户退出 -->
+		<action name="out" class="adminUser" method="myOut">
+			<result type="redirect">/front/index.jspx</result>
+		</action>
+
+		<action name="setPassword">
+			<result>/WEB-INF/user/setPassword.jsp</result>
+		</action>
+
+		<action name="sonsum">
+			<result>/WEB-INF/user/sonsum.jsp</result>
+		</action>
+
+		<action name="MainWeb">
+			<result>/WEB-INF/user/MainWeb.jsp</result>
+		</action>
+		<action name="addSonsum">
+			<result>/WEB-INF/user/addSonsum.jsp</result>
+		</action>
+            
+
+         <!-- 用户消息管理 -->
+        <action name="ListSelectAdmin" class="admin" method="listAdmin">
+			<result>/WEB-INF/user/addAdmin.jsp</result>
+			<result name="error">/WEB-INF/user/error.jsp</result>
+		</action>
+        
+         <action name="ListAllUserCheck" class="adminUser"
+			method="ListAllUser">
+			<result>/WEB-INF/user/ListAllUserSelect.jsp</result>
+		</action>
+		<action name="ListAllUserSelect" class="adminUser"
+			method="ListAllUser">
+			<result>/WEB-INF/user/ListAllUserSelect.jsp</result>
+		</action>
+      
+         <action name="SendMsg" class="managerMsg" method="initUserMsg">
+         <result>/WEB-INF/user/SendMsg.jsp</result>
+         </action>
+         <action name="SendUserMsg" class="managerMsg" method="initUserMsg">
+         <result>/WEB-INF/user/SendUserMsg.jsp</result>
+         </action>
+         <action name="UpdateUserMsg" class="managerMsg" method="addMsg">
+         <result>/WEB-INF/user/SendUserMsg.jsp</result>
+         </action>
+         
+         <action name="UpdateMsg" class="managerMsg" method="addMsg">
+         <result>/WEB-INF/user/SendMsg.jsp</result>
+         </action>
+         <action name="delSubMsg" class="managerMsg" method="deleteSub">
+         <result>/WEB-INF/user/${linkUrl}</result>
+         </action>
+         <action name="delOverMsg" class="managerMsg" method="deleteOver">
+         <result>/WEB-INF/user/${linkUrl}</result>
+         </action>
+         <action name="relDelMsg" class="managerMsg" method="relDelMsg">
+         <result>/WEB-INF/user/${linkUrl}</result>
+         </action>
+         <action name="breadmsg" class="managerMsg" method="breadmsg">
+         <result>/WEB-INF/user/${linkUrl}</result>
+         </action>
+         
+
+          <action name="ListReceveMsg" class="managerMsg" method="initUserMsg">
+         <result>/WEB-INF/user/listReceiMsg.jsp</result>
+         </action>
+         
+         
+         <action name="listSendMsg" class="managerMsg" method="initUserMsg">
+         <result>/WEB-INF/user/listSendMsg.jsp</result>
+         </action>
+         <action name="listConMsg" class="managerMsg" method="initUserMsg">
+         <result>/WEB-INF/user/listcomMsg.jsp</result>
+         </action>
+          <action name="listDelMsg" class="managerMsg" method="initUserMsg">
+         <result>/WEB-INF/user/listdelMsg.jsp</result>
+         </action>
+          <action name="getNewMsg" class="managerMsg" method="initUserMsg">
+         <result>/WEB-INF/user/showNewsMsg.jsp</result>
+         </action>
+
+
+
+	</package>
+
+</struts>
